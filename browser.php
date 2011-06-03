@@ -10,7 +10,7 @@ session_start();
 echo $script_path;
 ?>/js-config.php"></script>
 <?php
-//bahaha er ist sehr mŠnnlich!!!  aber er brauche mehr Muskel Masse. lol -yours truly Sarai Price :)
+//bahaha er ist sehr mŠnnlich!!!  aber er brauche mehr Muskel Masse. lol -yours truly Sarai Price :) lolli pop lolli pop 
 // It's about a million times easier to debug Javascript when your source files
 // haven't been messed with.  Unfortunately, it's also slower and causes the
 // browser to issue many more requests.
