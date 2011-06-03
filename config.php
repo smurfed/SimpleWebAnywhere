@@ -1,4 +1,6 @@
 <?php
+
+  // Burgers $ Fries- June3 2011
   // This file contains the configurable paths and options
   // made available by WebAnywhere.
   // The default configuration assumes installation on your local machine:
