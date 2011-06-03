@@ -1,0 +1,977 @@
+------------------------------------------------------------------------
+r312 | hgneng | 2011-03-19 23:05:59 -0600 (Sat, 19 Mar 2011) | 2 lines
+
+add Hindi language
+
+------------------------------------------------------------------------
+r311 | krilnon | 2010-10-30 23:45:42 -0600 (Sat, 30 Oct 2010) | 2 lines
+
+Updated WebTrax to reflect its use in eye-tracking comparison study and to generate aggregate heatmaps.  Some minor fixes for IE were made as well.
+
+------------------------------------------------------------------------
+r310 | michael.leezenbaum | 2010-08-12 09:27:32 -0600 (Thu, 12 Aug 2010) | 1 line
+
+Cleared the sound queue before "Invalid key press" is spoken
+------------------------------------------------------------------------
+r309 | michael.leezenbaum | 2010-08-11 22:26:03 -0600 (Wed, 11 Aug 2010) | 2 lines
+
+Removed value from the #location text field
+  -Allows both the #location and #wa_finder_field text fields to resize simultaneously in IE so that the #wa_finder_field is not hidden when the browser window is small
+------------------------------------------------------------------------
+r308 | robin.marie.miller | 2010-07-30 11:07:32 -0600 (Fri, 30 Jul 2010) | 2 lines
+
+allows the user to grab the scrollbar with a mouse without interrupting the speech
+
+------------------------------------------------------------------------
+r307 | robin.marie.miller | 2010-07-06 13:05:08 -0600 (Tue, 06 Jul 2010) | 2 lines
+
+Fixes the selection reading extension.
+
+------------------------------------------------------------------------
+r306 | robin.marie.miller | 2010-07-06 09:52:34 -0600 (Tue, 06 Jul 2010) | 2 lines
+
+Allows for the use of a mouse with the location field bar.
+
+------------------------------------------------------------------------
+r303 | krilnon | 2010-06-21 13:39:32 -0600 (Mon, 21 Jun 2010) | 2 lines
+
+Fixed detection/rewrite of meta tags.
+
+------------------------------------------------------------------------
+r302 | krilnon | 2010-06-02 15:59:42 -0600 (Wed, 02 Jun 2010) | 2 lines
+
+Removed a false-positive case for the content detection filter.
+
+------------------------------------------------------------------------
+r301 | krilnon | 2010-06-02 15:29:41 -0600 (Wed, 02 Jun 2010) | 2 lines
+
+Fix filter detection rule for image loading.  Now checks to see that the local image has loaded, too.
+
+------------------------------------------------------------------------
+r300 | jeffrey.bigham | 2010-06-02 15:10:11 -0600 (Wed, 02 Jun 2010) | 1 line
+
+
+------------------------------------------------------------------------
+r299 | krilnon | 2010-06-01 14:04:36 -0600 (Tue, 01 Jun 2010) | 2 lines
+
+Added support for extension: WebTrax: Visualizing Non-Visual Web Interactions.  For now, it is off by default but reserves the keybindings Ctrl 1, Ctrl 2, and Ctrl 3.
+
+------------------------------------------------------------------------
+r298 | krilnon | 2010-06-01 12:32:26 -0600 (Tue, 01 Jun 2010) | 2 lines
+
+Added a blocked.html page that is displayed when a blocked page is encountered by filter-detect.
+
+------------------------------------------------------------------------
+r297 | krilnon | 2010-05-28 15:54:56 -0600 (Fri, 28 May 2010) | 2 lines
+
+...added filter-detect.js extension to repository.
+
+------------------------------------------------------------------------
+r296 | krilnon | 2010-05-28 15:53:05 -0600 (Fri, 28 May 2010) | 2 lines
+
+Added an extension (filter-detect.js) that detects web content filtering policies on the local network and attempts to have WebAnywhere block those sites as well.  Fixes issue #48.
+
+------------------------------------------------------------------------
+r295 | chisholm.wendy | 2010-05-19 16:46:50 -0600 (Wed, 19 May 2010) | 64 lines
+
+in utils.js
+  /**
+   * Return the height/width of the visible portion of the supplied window.
+   * @param Window.
+   * @return [width, height]
+   */
+  contentWidthHeight: function(win) {
+		if(self.innerWidth != undefined) {
+		  return [win.innerWidth, win.innerHeight];
+    } else {
+  		//var docelem = win.document.documentElement;
+  		var docelem = win.document.body; 
+  		return [docelem.clientWidth, docelem.clientHeight];
+		}
+  },
+
+Changed this line because of http://www.howtocreate.co.uk/tutorials/javascript/browserwindow top.document.clientWidth is undefined, top.document.documentElement.clientWidth is 0, top.document.body.clientWith is 1036 (at least during one test).. This could either refer to document width (in quirksmode) or window width (in standard mode). Either way...it will never return 0...
+
+This fixed the whole interface from constantly shifting to the left but the problem remains that as soon as you press down arrow, there is a slight shift to the left. BUT as soon as you press control+l to go to a new location it shifts back to the starting point (this is where it would keep shifting left before). 
+
+I think the shift to the left might be in the getScrollOffset function (in utils.js). I have a feeling document.documentElement.scrollLeft might have a similar issue to clientWidth. Searching.... 
+
+From that same article, there does seem to be similar issues with IE and scroll x/y values. Therefore, I added the document.body.scrollLeft bit to the following code in utils.js
+
+  getScrollOffset: function(win) {
+  	if(win.scrollY != undefined) {
+  		return [win.scrollX, win.scrollY];
+  	} else if(win.document.body.scrollTop) {
+  	   var delem = win.document.body;
+  	   return [delem.scrollLeft, delem.scrollTop];
+  	}
+  	else if(win.document.documentElement.scrollTop) {
+  		var delem = win.document.documentElement;
+      return [delem.scrollLeft, delem.scrollTop];
+  	} else {
+  		return [0, 0];
+  	}
+  }
+
+But this did not seem to affect the behavior related to the slight shift left when pressing the down arrow key.
+
+Is it related to positioning the content window? When it grabs the dimensions and gets window instead of document...where can I see those? how do I know which value is being returned? 
+
+Moving onto the "why doesn't currently read text display in the "wa_text_display" span in IE...I commented out the following from interface.js
+
+updateCurrentlyPlayingSize: function(time, total) {
+    // Not the best way to handle whatever problem is happening with IE.
+    //if(WA.Utils.isIE()) {
+     // return;
+    //}
+Right...so now every now and again the content scrolls by...so it seems that the values for IE throw it into the if condition that does scrolling...
+
+Right, in interface.js in updateCurrentlyPlayingSize, width=1036, text_disp = 5000 (since that is set in index.php on the wa_text_display_container), so that diff is -3964. Thus the text is scrolling because the only choices in the if/else are for values >=0 (where you don't scroll) and everything else for which you do scroll.
+
+So, I think Jeffrey was expecting that the offset width of that span is the width of the characters but it is always returning 5000 because that is the length of the div and the span is set to 100% width...
+
+What if I comment out the following in index.php (got rid of width=5000px on the container div)
+ <!-- div id="wa_text_display_container" style="width: 5000px;" -->
+        <div id="wa_text_display_container">
+          <span id="wa_text_display" style="width: 100%; margin: 0; padding: 0.1em; font-size: 3em; color: #FF0; font-weight: bold;"><?php echo wa_gettext("Welcome to WebAnywhere") ?></span>
+        </div>
+
+Still seems to work on FF/Mac. And it works in IE/Win!!!!!
+
+------------------------------------------------------------------------
+r294 | jeffrey.bigham | 2010-04-26 12:55:17 -0600 (Mon, 26 Apr 2010) | 1 line
+
+Changes to use a standard remote homepage when domain is localhost, instead of an error page.
+------------------------------------------------------------------------
+r293 | jeffrey.bigham | 2010-04-26 07:37:59 -0600 (Mon, 26 Apr 2010) | 1 line
+
+Fixes default English TTS.
+------------------------------------------------------------------------
+r292 | hgneng | 2010-04-17 09:16:41 -0600 (Sat, 17 Apr 2010) | 2 lines
+
+roll back to previous version
+
+------------------------------------------------------------------------
+r291 | hgneng | 2010-04-17 01:42:45 -0600 (Sat, 17 Apr 2010) | 2 lines
+
+comment out a line which make string.replace unusable
+
+------------------------------------------------------------------------
+r290 | hgneng | 2010-04-10 04:17:28 -0600 (Sat, 10 Apr 2010) | 2 lines
+
+fix issue 43
+
+------------------------------------------------------------------------
+r289 | hgneng | 2010-04-10 02:24:01 -0600 (Sat, 10 Apr 2010) | 2 lines
+
+update description of ALT+leftarrow key to work around Firefox bug
+
+------------------------------------------------------------------------
+r288 | hgneng | 2010-04-10 01:52:30 -0600 (Sat, 10 Apr 2010) | 2 lines
+
+fix enconding warning of javascript file
+
+------------------------------------------------------------------------
+r287 | hgneng | 2010-04-05 03:06:38 -0600 (Mon, 05 Apr 2010) | 2 lines
+
+fix issue 40:  Fail to read "Previous" search key  
+
+------------------------------------------------------------------------
+r285 | hgneng | 2010-04-05 02:35:10 -0600 (Mon, 05 Apr 2010) | 2 lines
+
+fix bug 39: Location field text area is unable to focus with mouse.
+
+------------------------------------------------------------------------
+r284 | hgneng | 2010-04-05 01:47:14 -0600 (Mon, 05 Apr 2010) | 2 lines
+
+fix issue 25: should not hard code TTS engine path
+
+------------------------------------------------------------------------
+r283 | hgneng | 2010-04-05 01:28:05 -0600 (Mon, 05 Apr 2010) | 2 lines
+
+remove reference to wa_prep.js
+
+------------------------------------------------------------------------
+r282 | hgneng | 2010-03-29 09:37:42 -0600 (Mon, 29 Mar 2010) | 2 lines
+
+fix a small error/warning when history is not available
+
+------------------------------------------------------------------------
+r281 | hgneng | 2010-03-28 01:15:54 -0600 (Sun, 28 Mar 2010) | 2 lines
+
+add instruction for ALT+arrowleft/right - focus to Location before use this function.
+
+------------------------------------------------------------------------
+r280 | hgneng | 2010-03-28 00:38:44 -0600 (Sun, 28 Mar 2010) | 2 lines
+
+fix a bug of alt+arrowleft alt+arrowright and show this interface in instruction.
+
+------------------------------------------------------------------------
+r279 | hgneng | 2010-03-21 09:46:15 -0600 (Sun, 21 Mar 2010) | 2 lines
+
+update translate for escape key
+
+------------------------------------------------------------------------
+r278 | hgneng | 2010-03-21 09:38:51 -0600 (Sun, 21 Mar 2010) | 2 lines
+
+add keyboard shortcut translation
+
+------------------------------------------------------------------------
+r277 | hgneng | 2010-03-21 05:16:11 -0600 (Sun, 21 Mar 2010) | 2 lines
+
+add CTRL+F and correct CTRL+/
+
+------------------------------------------------------------------------
+r276 | hgneng | 2010-03-21 04:38:58 -0600 (Sun, 21 Mar 2010) | 2 lines
+
+update translate of "next" and "previous"
+
+------------------------------------------------------------------------
+r275 | hgneng | 2010-03-14 07:44:32 -0600 (Sun, 14 Mar 2010) | 2 lines
+
+remove some debug commands
+
+------------------------------------------------------------------------
+r274 | hgneng | 2010-03-14 07:43:00 -0600 (Sun, 14 Mar 2010) | 2 lines
+
+fix a bug of fail to find base locale
+
+------------------------------------------------------------------------
+r273 | hgneng | 2010-03-14 04:07:53 -0600 (Sun, 14 Mar 2010) | 2 lines
+
+correct function key from "/" to CRTL + "/"
+
+------------------------------------------------------------------------
+r272 | hgneng | 2010-03-09 07:56:42 -0700 (Tue, 09 Mar 2010) | 2 lines
+
+remove target="_blank" to forbid opening in a new window
+
+------------------------------------------------------------------------
+r271 | hgneng | 2010-03-06 20:31:07 -0700 (Sat, 06 Mar 2010) | 2 lines
+
+update German translation
+
+------------------------------------------------------------------------
+r266 | hgneng | 2010-02-27 08:41:40 -0700 (Sat, 27 Feb 2010) | 2 lines
+
+add home page setting for different locale. Just add something like $home_pages['en'] = 'http://hostname/home_en.html' to config.php
+
+------------------------------------------------------------------------
+r265 | hgneng | 2010-02-17 09:10:09 -0700 (Wed, 17 Feb 2010) | 2 lines
+
+add some Chinese spliting characters
+
+------------------------------------------------------------------------
+r264 | hgneng | 2010-02-17 00:06:53 -0700 (Wed, 17 Feb 2010) | 2 lines
+
+add cache and log function
+
+------------------------------------------------------------------------
+r263 | hgneng | 2010-02-14 10:00:41 -0700 (Sun, 14 Feb 2010) | 2 lines
+
+add voice parameter to select different voice in a language/locale
+
+------------------------------------------------------------------------
+r262 | jeffrey.bigham | 2010-01-20 18:30:34 -0700 (Wed, 20 Jan 2010) | 1 line
+
+A new PHP file to aid in visualizing recordings - should not impact anything else.
+------------------------------------------------------------------------
+r261 | jeffrey.bigham | 2010-01-20 18:25:17 -0700 (Wed, 20 Jan 2010) | 1 line
+
+A few small changes and fixes to support recording.
+------------------------------------------------------------------------
+r260 | jeffrey.bigham | 2010-01-20 18:18:38 -0700 (Wed, 20 Jan 2010) | 5 lines
+
+Two updates:
+
+Adds a new version of getURLFromProxiedDoc that more accurately determines the full URL from the proxied page.
+
+Adds a function for visualizing recordings (should not be used unless $record_interactions) is set to true in config.php.
+------------------------------------------------------------------------
+r254 | hgneng | 2010-01-16 23:52:19 -0700 (Sat, 16 Jan 2010) | 2 lines
+
+add German locale (I know very little German. The translation needs native speaker to review)
+
+------------------------------------------------------------------------
+r253 | chisholm.wendy | 2010-01-04 15:51:00 -0700 (Mon, 04 Jan 2010) | 1 line
+
+deleted that last change. tried to use svn revert but did not have an affect.
+------------------------------------------------------------------------
+r252 | chisholm.wendy | 2010-01-04 15:49:41 -0700 (Mon, 04 Jan 2010) | 1 line
+
+deleted that last change. tried to use svn revert but did not have an affect
+------------------------------------------------------------------------
+r251 | chisholm.wendy | 2010-01-04 15:33:58 -0700 (Mon, 04 Jan 2010) | 1 line
+
+added test to beginning of getXPath in case the target node of the keypress is somehow unavailable e.g. permission denied
+------------------------------------------------------------------------
+r250 | chisholm.wendy | 2010-01-04 15:11:47 -0700 (Mon, 04 Jan 2010) | 1 line
+
+added try-catch to help with ie error during onload of google.com
+------------------------------------------------------------------------
+r247 | hgneng | 2010-01-02 22:34:43 -0700 (Sat, 02 Jan 2010) | 2 lines
+
+change url_var_name from q to proxy_url in order not to conflict with Baidu search engine. (Some strange string will appear in searching text box. This was fixed in r220 but was restored later.)
+
+------------------------------------------------------------------------
+r246 | hgneng | 2010-01-02 22:20:34 -0700 (Sat, 02 Jan 2010) | 2 lines
+
+Removing statement "session_start" to fix a bug of "Cannot send session cache limiter - headers already sent". For more detail, please refer to http://code.google.com/p/webanywhere/issues/detail?id=30
+
+------------------------------------------------------------------------
+r245 | hgneng | 2010-01-02 03:38:49 -0700 (Sat, 02 Jan 2010) | 2 lines
+
+Add IF condition to postDelayPostInfo to workaround a bug by checking whether top.web_proxy_url is defined. The root cause of why web_proxy_url is undefined has not investigated.
+
+------------------------------------------------------------------------
+r244 | hgneng | 2010-01-02 00:55:49 -0700 (Sat, 02 Jan 2010) | 2 lines
+
+Remove a dulplicate debug log
+
+------------------------------------------------------------------------
+r243 | hgneng | 2010-01-01 23:38:58 -0700 (Fri, 01 Jan 2010) | 2 lines
+
+Turn off debugMode of soundmanager. This should only be turned on in local version.
+
+------------------------------------------------------------------------
+r242 | hgneng | 2010-01-01 23:12:20 -0700 (Fri, 01 Jan 2010) | 2 lines
+
+Add IF condition to workaound a bug when top.web_proxy_url is NULL. The root cause of this bug has not clearly investigated.
+
+------------------------------------------------------------------------
+r241 | hgneng | 2009-12-26 09:12:39 -0700 (Sat, 26 Dec 2009) | 2 lines
+
+add parameter port
+
+------------------------------------------------------------------------
+r240 | chisholm.wendy | 2009-12-16 18:38:28 -0700 (Wed, 16 Dec 2009) | 1 line
+
+fixed height issue with content frame in IE
+------------------------------------------------------------------------
+r239 | chisholm.wendy | 2009-12-16 17:42:49 -0700 (Wed, 16 Dec 2009) | 1 line
+
+fix traversing iframe nodes for IE
+------------------------------------------------------------------------
+r238 | chisholm.wendy | 2009-12-16 17:42:24 -0700 (Wed, 16 Dec 2009) | 1 line
+
+fix adding events to iframes for IE
+------------------------------------------------------------------------
+r237 | chisholm.wendy | 2009-12-16 17:33:27 -0700 (Wed, 16 Dec 2009) | 1 line
+
+further fix to traverse iframe nodes in ie
+------------------------------------------------------------------------
+r236 | chisholm.wendy | 2009-12-16 17:24:12 -0700 (Wed, 16 Dec 2009) | 1 line
+
+fixed building of ndocuments to work in ie
+------------------------------------------------------------------------
+r235 | chisholm.wendy | 2009-12-14 17:33:14 -0700 (Mon, 14 Dec 2009) | 1 line
+
+added a test to determine if newHeight was negative number and if it is, make it positive so that IE does not choke.
+------------------------------------------------------------------------
+r234 | jeffrey.bigham | 2009-12-09 16:13:53 -0700 (Wed, 09 Dec 2009) | 1 line
+
+Fix related to SoundManager
+------------------------------------------------------------------------
+r233 | jeffrey.bigham | 2009-12-09 12:53:47 -0700 (Wed, 09 Dec 2009) | 1 line
+
+Leaves out recording code if the config flag isn't set.  It was always disabled, but now it's not even sent to the browser.
+------------------------------------------------------------------------
+r232 | jeffrey.bigham | 2009-12-09 12:53:01 -0700 (Wed, 09 Dec 2009) | 1 line
+
+Works on IE now, for some reason the magnified, high-contrast view is broken...
+------------------------------------------------------------------------
+r231 | jeffrey.bigham | 2009-12-06 20:13:14 -0700 (Sun, 06 Dec 2009) | 1 line
+
+A number of additions/fixes. Implementation for a recorder for programming-by-demonstration, the busy sound, delayPosting use data to WA via the proxy, and fixes for v2.95 of SoundManager 2.
+------------------------------------------------------------------------
+r230 | jeffrey.bigham | 2009-12-06 20:04:38 -0700 (Sun, 06 Dec 2009) | 1 line
+
+A new waiting sound that plays while WebAnywhere is busy doing things like loading a web page.
+------------------------------------------------------------------------
+r229 | jeffrey.bigham | 2009-12-06 11:54:29 -0700 (Sun, 06 Dec 2009) | 1 line
+
+Updated version of SoundManager 2 sound player to most recent (2.95)
+------------------------------------------------------------------------
+r228 | chisholm.wendy | 2009-12-04 17:39:55 -0700 (Fri, 04 Dec 2009) | 1 line
+
+adding keypress, keyup, and keydown event handlers to iframes
+------------------------------------------------------------------------
+r227 | chisholm.wendy | 2009-12-04 16:49:23 -0700 (Fri, 04 Dec 2009) | 1 line
+
+adding support for iframes
+------------------------------------------------------------------------
+r226 | chisholm.wendy | 2009-12-04 16:48:57 -0700 (Fri, 04 Dec 2009) | 1 line
+
+adding support for iframes
+------------------------------------------------------------------------
+r222 | hgneng | 2009-11-27 05:27:20 -0700 (Fri, 27 Nov 2009) | 2 lines
+
+CGI agent of Ekho TTS
+
+------------------------------------------------------------------------
+r221 | hgneng | 2009-11-13 20:37:55 -0700 (Fri, 13 Nov 2009) | 2 lines
+
+small fix to chinese locale
+
+------------------------------------------------------------------------
+r220 | hgneng | 2009-11-13 20:36:28 -0700 (Fri, 13 Nov 2009) | 2 lines
+
+change the name of a var in order not to conflic with Baidu search engine
+
+------------------------------------------------------------------------
+r219 | hgneng | 2009-11-13 20:27:56 -0700 (Fri, 13 Nov 2009) | 2 lines
+
+small fixes to locale string and update zh_CN locale
+
+------------------------------------------------------------------------
+r218 | jeffrey.bigham | 2009-11-10 12:53:14 -0700 (Tue, 10 Nov 2009) | 2 lines
+
+Minor improvement to how the proxy rewrites *.js files.
+
+------------------------------------------------------------------------
+r217 | jeffrey.bigham | 2009-11-01 15:46:29 -0700 (Sun, 01 Nov 2009) | 1 line
+
+
+------------------------------------------------------------------------
+r216 | jeffrey.bigham | 2009-11-01 12:58:09 -0700 (Sun, 01 Nov 2009) | 1 line
+
+Changes supporting new languages.
+------------------------------------------------------------------------
+r215 | jeffrey.bigham | 2009-11-01 11:47:51 -0700 (Sun, 01 Nov 2009) | 1 line
+
+Fixed formatting.
+------------------------------------------------------------------------
+r214 | jeffrey.bigham | 2009-11-01 08:46:46 -0700 (Sun, 01 Nov 2009) | 1 line
+
+Fixed formatting, added some comments.
+------------------------------------------------------------------------
+r213 | hgneng | 2009-10-31 10:57:04 -0600 (Sat, 31 Oct 2009) | 2 lines
+
+remove code that split Chinese into characters
+
+------------------------------------------------------------------------
+r212 | hgneng | 2009-10-31 10:55:54 -0600 (Sat, 31 Oct 2009) | 2 lines
+
+Add all languages that eSpeak supports
+
+------------------------------------------------------------------------
+r211 | hgneng | 2009-10-25 10:50:29 -0600 (Sun, 25 Oct 2009) | 2 lines
+
+add function of seting voices according to locale
+
+------------------------------------------------------------------------
+r210 | hgneng | 2009-10-15 09:47:51 -0600 (Thu, 15 Oct 2009) | 3 lines
+
+Wrapped all string with wa_gettext
+Finished translating simplified Chinese (zh_CN)
+
+------------------------------------------------------------------------
+r208 | hgneng | 2009-10-14 04:27:13 -0600 (Wed, 14 Oct 2009) | 1 line
+
+Add description for how to change locale at runtime
+------------------------------------------------------------------------
+r207 | hgneng | 2009-10-14 04:05:33 -0600 (Wed, 14 Oct 2009) | 1 line
+
+Fix an "undefined value" warning.
+------------------------------------------------------------------------
+r203 | hgneng | 2009-10-10 06:44:16 -0600 (Sat, 10 Oct 2009) | 2 lines
+
+small change to the description
+
+------------------------------------------------------------------------
+r202 | hgneng | 2009-10-10 05:29:07 -0600 (Sat, 10 Oct 2009) | 2 lines
+
+add locale framework
+
+------------------------------------------------------------------------
+r196 | jeffrey.bigham | 2009-09-30 15:50:06 -0600 (Wed, 30 Sep 2009) | 1 line
+
+
+------------------------------------------------------------------------
+r193 | jeffrey.bigham | 2009-08-27 20:23:29 -0600 (Thu, 27 Aug 2009) | 1 line
+
+Fixes WebAnywhere to work on the NYTimes.
+------------------------------------------------------------------------
+r192 | jeffrey.bigham | 2009-08-16 16:28:14 -0600 (Sun, 16 Aug 2009) | 2 lines
+
+1.  A few small fixes for Internet Explorer.
+2.  The initial check-in of the ARIA extension, which is not yet enabled by default.
+------------------------------------------------------------------------
+r191 | jeffrey.bigham | 2009-08-16 16:23:21 -0600 (Sun, 16 Aug 2009) | 1 line
+
+A few fixes of the main index file that makes it work better with Internet Explorer.
+------------------------------------------------------------------------
+r190 | jeffrey.bigham | 2009-08-16 16:22:19 -0600 (Sun, 16 Aug 2009) | 1 line
+
+Update of the default WebAnywhere content.
+------------------------------------------------------------------------
+r189 | jeffrey.bigham | 2009-07-12 19:50:01 -0600 (Sun, 12 Jul 2009) | 1 line
+
+Minor tweeks to the keyboard shortcut menu.
+------------------------------------------------------------------------
+r188 | jeffrey.bigham | 2009-07-12 14:18:58 -0600 (Sun, 12 Jul 2009) | 1 line
+
+Normalizes capitalization between sound playback and prefetching.
+------------------------------------------------------------------------
+r187 | jeffrey.bigham | 2009-07-12 13:51:16 -0600 (Sun, 12 Jul 2009) | 1 line
+
+Minors fixes to sound splitting and prefetcher to keep them better in sync.
+------------------------------------------------------------------------
+r186 | jeffrey.bigham | 2009-07-12 13:08:46 -0600 (Sun, 12 Jul 2009) | 1 line
+
+
+------------------------------------------------------------------------
+r185 | jeffrey.bigham | 2009-07-12 13:06:02 -0600 (Sun, 12 Jul 2009) | 1 line
+
+
+------------------------------------------------------------------------
+r184 | jeffrey.bigham | 2009-07-12 12:57:14 -0600 (Sun, 12 Jul 2009) | 1 line
+
+
+------------------------------------------------------------------------
+r183 | jeffrey.bigham | 2009-07-11 13:13:08 -0600 (Sat, 11 Jul 2009) | 1 line
+
+More robust, and adds scrolling for the magnified view.
+------------------------------------------------------------------------
+r182 | jeffrey.bigham | 2009-07-10 21:37:48 -0600 (Fri, 10 Jul 2009) | 1 line
+
+
+------------------------------------------------------------------------
+r181 | jeffrey.bigham | 2009-07-10 19:31:22 -0600 (Fri, 10 Jul 2009) | 1 line
+
+
+------------------------------------------------------------------------
+r180 | jeffrey.bigham | 2009-07-09 19:09:25 -0600 (Thu, 09 Jul 2009) | 1 line
+
+
+------------------------------------------------------------------------
+r179 | jeffrey.bigham | 2009-07-09 18:58:35 -0600 (Thu, 09 Jul 2009) | 1 line
+
+
+------------------------------------------------------------------------
+r178 | jeffrey.bigham | 2009-07-09 18:55:39 -0600 (Thu, 09 Jul 2009) | 1 line
+
+Checkin of new minify.
+------------------------------------------------------------------------
+r177 | jeffrey.bigham | 2009-07-09 18:52:41 -0600 (Thu, 09 Jul 2009) | 1 line
+
+
+------------------------------------------------------------------------
+r176 | jeffrey.bigham | 2009-07-09 18:52:13 -0600 (Thu, 09 Jul 2009) | 1 line
+
+
+------------------------------------------------------------------------
+r175 | jeffrey.bigham | 2009-07-09 18:51:03 -0600 (Thu, 09 Jul 2009) | 1 line
+
+
+------------------------------------------------------------------------
+r174 | jeffrey.bigham | 2009-07-08 14:45:03 -0600 (Wed, 08 Jul 2009) | 1 line
+
+
+------------------------------------------------------------------------
+r173 | jeffrey.bigham | 2009-07-08 09:24:41 -0600 (Wed, 08 Jul 2009) | 1 line
+
+Cleaned/updated version of config.php - make sure not to chech this in with values specific to your own setup.
+------------------------------------------------------------------------
+r172 | jeffrey.bigham | 2009-07-08 09:23:36 -0600 (Wed, 08 Jul 2009) | 1 line
+
+A number of smaller updates, including the addition of a new index-iframe.php which uses an iframe to hold content rather than a frameset.  This is what we'll most likely to be transitioning to in the future.
+------------------------------------------------------------------------
+r171 | jeffrey.bigham | 2009-07-08 08:45:40 -0600 (Wed, 08 Jul 2009) | 1 line
+
+
+------------------------------------------------------------------------
+r170 | jeffrey.bigham | 2009-07-08 08:41:02 -0600 (Wed, 08 Jul 2009) | 1 line
+
+Adds support for delay-posting log information, and a utility function for determining what has been selected on the current page.
+------------------------------------------------------------------------
+r169 | jeffrey.bigham | 2009-07-08 08:40:07 -0600 (Wed, 08 Jul 2009) | 1 line
+
+Lets standalone version work as an iframe.
+------------------------------------------------------------------------
+r168 | jeffrey.bigham | 2009-07-08 08:39:43 -0600 (Wed, 08 Jul 2009) | 1 line
+
+Adds supports for queued actions.
+------------------------------------------------------------------------
+r167 | jeffrey.bigham | 2009-07-08 08:38:56 -0600 (Wed, 08 Jul 2009) | 1 line
+
+Adds action queues, requires subsequent changes to browser.php (or index.php)
+------------------------------------------------------------------------
+r166 | jeffrey.bigham | 2009-07-08 08:37:01 -0600 (Wed, 08 Jul 2009) | 1 line
+
+Small changes to various extensions.
+------------------------------------------------------------------------
+r165 | jeffrey.bigham | 2009-07-08 08:25:52 -0600 (Wed, 08 Jul 2009) | 1 line
+
+Small CI, new LOADING state
+------------------------------------------------------------------------
+r164 | chisholm.wendy | 2009-06-03 10:12:08 -0600 (Wed, 03 Jun 2009) | 1 line
+
+not sure what I chnged with this one...
+------------------------------------------------------------------------
+r163 | chisholm.wendy | 2009-06-03 10:10:28 -0600 (Wed, 03 Jun 2009) | 1 line
+
+adding iframe support, invisibility support
+------------------------------------------------------------------------
+r162 | chisholm.wendy | 2009-06-03 10:08:44 -0600 (Wed, 03 Jun 2009) | 1 line
+
+adding iframe support, invisibility support
+------------------------------------------------------------------------
+r161 | chisholm.wendy | 2009-06-02 17:29:27 -0600 (Tue, 02 Jun 2009) | 1 line
+
+added buildDocumentStack to support tracking of document nodes and counting headings and links.
+------------------------------------------------------------------------
+r160 | chisholm.wendy | 2009-06-02 12:40:40 -0600 (Tue, 02 Jun 2009) | 1 line
+
+adding iframe support
+------------------------------------------------------------------------
+r159 | chisholm.wendy | 2009-06-02 12:35:03 -0600 (Tue, 02 Jun 2009) | 1 line
+
+adding iframe support
+------------------------------------------------------------------------
+r141 | hgneng | 2009-04-04 10:58:19 -0600 (Sat, 04 Apr 2009) | 2 lines
+
+Add redirection for English
+
+------------------------------------------------------------------------
+r140 | hgneng | 2009-03-29 00:32:57 -0600 (Sun, 29 Mar 2009) | 2 lines
+
+ekho_syllable is a simple Chinese TTS server. It only accept character sound request one by one.
+
+------------------------------------------------------------------------
+r134 | jeffrey.bigham | 2009-03-21 19:12:19 -0600 (Sat, 21 Mar 2009) | 1 line
+
+Removes the deprecated align attribute and replaces with CSS.
+------------------------------------------------------------------------
+r133 | hgneng | 2009-03-21 07:38:28 -0600 (Sat, 21 Mar 2009) | 1 line
+
+Commented the section code of counting navigation frame's height because frame in IE has no contentDocument attribute. IE will complain an error. No fix plan yet.
+------------------------------------------------------------------------
+r132 | hgneng | 2009-03-21 06:40:50 -0600 (Sat, 21 Mar 2009) | 1 line
+
+Fix a small bug. Change "display; inline" to "display: inline;"
+------------------------------------------------------------------------
+r131 | hgneng | 2009-03-21 06:32:22 -0600 (Sat, 21 Mar 2009) | 2 lines
+
+Delete align attribute of INPUT because it has been deprecated. It will trigger a warning in Firefox. See
+http://www.w3schools.com/tags/tag_input.asp
+------------------------------------------------------------------------
+r130 | hgneng | 2009-03-21 01:23:48 -0600 (Sat, 21 Mar 2009) | 2 lines
+
+improve splitSoundsByBoundary for Unicode string
+
+------------------------------------------------------------------------
+r129 | hgneng | 2009-03-21 00:35:14 -0600 (Sat, 21 Mar 2009) | 2 lines
+
+re-implement sampleHash to make it works for all Unicode string
+
+------------------------------------------------------------------------
+r128 | hgneng | 2009-03-21 00:30:30 -0600 (Sat, 21 Mar 2009) | 2 lines
+
+add md5 library
+
+------------------------------------------------------------------------
+r127 | hgneng | 2009-03-21 00:14:05 -0600 (Sat, 21 Mar 2009) | 2 lines
+
+remove some code submit by mistake last time
+
+------------------------------------------------------------------------
+r123 | hgneng | 2009-03-14 01:34:15 -0600 (Sat, 14 Mar 2009) | 2 lines
+
+Added a bug description. No fix plan yet. Please searh keyword BUG.
+
+------------------------------------------------------------------------
+r121 | hgneng | 2009-03-08 09:21:34 -0600 (Sun, 08 Mar 2009) | 2 lines
+
+We can use any language eSpeak provide now.
+
+------------------------------------------------------------------------
+r120 | jeffrey.bigham | 2009-03-03 20:27:34 -0700 (Tue, 03 Mar 2009) | 1 line
+
+Updates the visual styling and look WebAnywhere.  Adds the high-contrast, magnified view.
+------------------------------------------------------------------------
+r119 | jeffrey.bigham | 2009-03-03 17:55:01 -0700 (Tue, 03 Mar 2009) | 1 line
+
+Minor tweeks, linted file, returns null for null arguments.
+------------------------------------------------------------------------
+r118 | jeffrey.bigham | 2009-03-03 17:54:02 -0700 (Tue, 03 Mar 2009) | 3 lines
+
+Makes encode/decode functions return null for null input.
+
+
+------------------------------------------------------------------------
+r117 | jeffrey.bigham | 2009-03-03 17:50:53 -0700 (Tue, 03 Mar 2009) | 1 line
+
+Minor fixes to interpreting nodes -- fixes minor bugs with visibility, list items, and tables.
+------------------------------------------------------------------------
+r116 | chisholm.wendy | 2009-02-26 16:41:10 -0700 (Thu, 26 Feb 2009) | 1 line
+
+fixed in-page link navigation. added support for targets created with an id attribute
+------------------------------------------------------------------------
+r110 | hgneng | 2009-01-19 01:22:01 -0700 (Mon, 19 Jan 2009) | 2 lines
+
+Add eSpeak TTS server
+
+------------------------------------------------------------------------
+r109 | hgneng | 2009-01-17 00:26:52 -0700 (Sat, 17 Jan 2009) | 2 lines
+
+Fix a small bug.
+
+------------------------------------------------------------------------
+r106 | hgneng | 2009-01-02 22:23:39 -0700 (Fri, 02 Jan 2009) | 2 lines
+
+Fixed a bug in getsound.pl
+improved getsound.php
+------------------------------------------------------------------------
+r99 | hgneng | 2008-12-27 02:11:27 -0700 (Sat, 27 Dec 2008) | 1 line
+
+Add interface to Ekho TTS
+------------------------------------------------------------------------
+r92 | hgneng | 2008-12-07 00:28:59 -0700 (Sun, 07 Dec 2008) | 4 lines
+
+call festival in block mode instead of callback mode
+disconnect festival nicely
+fix a bug of cache default value
+
+------------------------------------------------------------------------
+r87 | fidy.watcher | 2008-11-11 08:20:56 -0700 (Tue, 11 Nov 2008) | 1 line
+
+this file makes my eclipse not able to create a project when co
+------------------------------------------------------------------------
+r86 | jeffrey.bigham | 2008-10-08 20:44:40 -0600 (Wed, 08 Oct 2008) | 1 line
+
+Adds a number of unit tests, and the JSUnit framework for running them.
+------------------------------------------------------------------------
+r85 | jeffrey.bigham | 2008-10-01 14:56:13 -0600 (Wed, 01 Oct 2008) | 1 line
+
+Find functionality, some key mapping improvements, refactoring, and inpage-link improvements.
+------------------------------------------------------------------------
+r84 | jeffrey.bigham | 2008-10-01 14:55:18 -0600 (Wed, 01 Oct 2008) | 1 line
+
+
+------------------------------------------------------------------------
+r83 | jeffrey.bigham | 2008-09-23 17:08:16 -0600 (Tue, 23 Sep 2008) | 2 lines
+
+Largely fixes the finder functionality.
+Blurs focused elements after they are no longer the current element.
+------------------------------------------------------------------------
+r82 | jeffrey.bigham | 2008-09-23 14:42:42 -0600 (Tue, 23 Sep 2008) | 1 line
+
+Update to how focus of elements in the WebAnywhere frame are handled.
+------------------------------------------------------------------------
+r81 | jeffrey.bigham | 2008-09-23 13:31:20 -0600 (Tue, 23 Sep 2008) | 1 line
+
+Updates to use keymapping.php in the new location.
+------------------------------------------------------------------------
+r80 | jeffrey.bigham | 2008-09-23 13:30:55 -0600 (Tue, 23 Sep 2008) | 1 line
+
+Remove redundant soundmanager2.js files.
+------------------------------------------------------------------------
+r79 | jeffrey.bigham | 2008-09-23 13:29:43 -0600 (Tue, 23 Sep 2008) | 2 lines
+
+Remove redundant keymapping.php.
+
+------------------------------------------------------------------------
+r78 | jeffrey.bigham | 2008-09-23 12:02:33 -0600 (Tue, 23 Sep 2008) | 1 line
+
+
+------------------------------------------------------------------------
+r77 | jeffrey.bigham | 2008-09-23 12:02:07 -0600 (Tue, 23 Sep 2008) | 1 line
+
+
+------------------------------------------------------------------------
+r76 | jeffrey.bigham | 2008-09-22 16:51:37 -0600 (Mon, 22 Sep 2008) | 1 line
+
+Updated documentation.
+------------------------------------------------------------------------
+r75 | jeffrey.bigham | 2008-09-22 15:32:15 -0600 (Mon, 22 Sep 2008) | 1 line
+
+Removing AJAXSLT.
+------------------------------------------------------------------------
+r74 | jeffrey.bigham | 2008-09-22 15:15:57 -0600 (Mon, 22 Sep 2008) | 1 line
+
+Fixes a bug in the spotlighter causing it to report "Permission denied" in Internet Explorer.
+------------------------------------------------------------------------
+r73 | jeffrey.bigham | 2008-09-08 20:01:33 -0600 (Mon, 08 Sep 2008) | 1 line
+
+Cleanup.
+------------------------------------------------------------------------
+r72 | jeffrey.bigham | 2008-09-08 19:54:02 -0600 (Mon, 08 Sep 2008) | 1 line
+
+
+------------------------------------------------------------------------
+r71 | jeffrey.bigham | 2008-09-08 17:15:49 -0600 (Mon, 08 Sep 2008) | 1 line
+
+
+------------------------------------------------------------------------
+r70 | jeffrey.bigham | 2008-09-08 00:01:00 -0600 (Mon, 08 Sep 2008) | 1 line
+
+Fixes initial configuration, fixes IE bug with visual-spotlighter.
+------------------------------------------------------------------------
+r69 | jeffrey.bigham | 2008-09-07 23:49:05 -0600 (Sun, 07 Sep 2008) | 2 lines
+
+Extensions - visual highlighting and scrolling.
+Numerous bug fixes and improvements.
+------------------------------------------------------------------------
+r67 | jeffrey.bigham | 2008-08-02 10:32:49 -0600 (Sat, 02 Aug 2008) | 1 line
+
+Generalizes the web domain default in config.php.
+------------------------------------------------------------------------
+r66 | jeffrey.bigham | 2008-08-02 10:16:25 -0600 (Sat, 02 Aug 2008) | 1 line
+
+Reworked configuration variables to make them more intuitive.
+------------------------------------------------------------------------
+r65 | jeffrey.bigham | 2008-08-01 11:15:31 -0600 (Fri, 01 Aug 2008) | 5 lines
+
+Number of improvements reflecting the current alpha release at http://webanywhere.cs.washington.edu/
+
+Moves database support to SQLite for easier management.
+
+Fixes some small problems with how the system works.
+------------------------------------------------------------------------
+r54 | jeffrey.bigham | 2008-06-24 19:30:17 -0600 (Tue, 24 Jun 2008) | 1 line
+
+Fixes prefetching, and other errors with IE.
+------------------------------------------------------------------------
+r53 | jeffrey.bigham | 2008-06-23 23:03:25 -0600 (Mon, 23 Jun 2008) | 1 line
+
+Numerous changes designed to support the robustness of the system.
+------------------------------------------------------------------------
+r52 | jeffrey.bigham | 2008-06-03 22:34:25 -0600 (Tue, 03 Jun 2008) | 2 lines
+
+Comments out the error reporting, and adds quotes around the 'count' index used for retrieving counts in the database.
+
+------------------------------------------------------------------------
+r51 | jeffrey.bigham | 2008-05-31 11:36:53 -0600 (Sat, 31 May 2008) | 2 lines
+
+Fixes issue with proxifyURL that was causing files to be unnecessarily proxies, even when they were on the same domain as WebAnywhere.
+
+------------------------------------------------------------------------
+r50 | jeffrey.bigham | 2008-05-31 11:03:06 -0600 (Sat, 31 May 2008) | 3 lines
+
+Fixes or temporarily bypasses problems related to enabling prefetching.
+
+prefetchNext is having trouble findig the xmlHttpRequest object.  IE is still broken.  FF works, but requires making a new xmlHttpRequest each time. 
+------------------------------------------------------------------------
+r47 | jeffrey.bigham | 2008-05-29 23:53:27 -0600 (Thu, 29 May 2008) | 5 lines
+
+Changed default prefetching mode to be parallel DOM search.
+
+Added a small, random delay to prefetching when currently reading through a page.
+
+Fixed some comments.
+------------------------------------------------------------------------
+r46 | jeffrey.bigham | 2008-05-29 23:50:33 -0600 (Thu, 29 May 2008) | 1 line
+
+Fixes issue where this was trying to include the newer version of soundmanager2.js (soundmanager2-mini.js), and, therefore, wouldn't work when not in debug mode.
+------------------------------------------------------------------------
+r45 | jeffrey.bigham | 2008-05-27 23:14:28 -0600 (Tue, 27 May 2008) | 1 line
+
+Substantial rewrite and refactoring of much of the code, primarily sounds.js.
+------------------------------------------------------------------------
+r44 | jeffrey.bigham | 2008-05-16 14:56:27 -0600 (Fri, 16 May 2008) | 5 lines
+
+Removes files that were moved elsewhere:
+
+utils.js and base64.js moved to /utils/*
+
+handlenodes.js moved to node.js
+------------------------------------------------------------------------
+r43 | jeffrey.bigham | 2008-05-16 14:50:07 -0600 (Fri, 16 May 2008) | 1 line
+
+Moves utils.js and base64.js to utils directory, updates location in browser.php.
+------------------------------------------------------------------------
+r42 | jeffrey.bigham | 2008-05-16 13:46:01 -0600 (Fri, 16 May 2008) | 3 lines
+
+Makes base64.js an object.
+
+Move treeTraverseRecursion to handlenodes.js, simplifies its interface.
+------------------------------------------------------------------------
+r40 | jeffrey.bigham | 2008-05-16 13:00:04 -0600 (Fri, 16 May 2008) | 3 lines
+
+Converted utils.js and handlenodes.js to the new OO format.
+
+Updated other files accordingly.
+------------------------------------------------------------------------
+r36 | jeffrey.bigham | 2008-05-15 23:38:56 -0600 (Thu, 15 May 2008) | 1 line
+
+Converted keyboard.js to be an Object called WA.Keyboard.
+------------------------------------------------------------------------
+r35 | jeffrey.bigham | 2008-05-15 13:29:21 -0600 (Thu, 15 May 2008) | 1 line
+
+Adds new vars.js into which all global variables, including configuration directives, should go.
+------------------------------------------------------------------------
+r34 | jeffrey.bigham | 2008-05-14 16:10:35 -0600 (Wed, 14 May 2008) | 3 lines
+
+Made changes to the keyboard.js layout, function names, and comments to make them more clear.
+
+Reflected the change in wa.js.
+------------------------------------------------------------------------
+r33 | jeffrey.bigham | 2008-05-14 15:26:20 -0600 (Wed, 14 May 2008) | 1 line
+
+Updates the main PHP files for structure and content.
+------------------------------------------------------------------------
+r32 | jeffrey.bigham | 2008-05-14 15:25:40 -0600 (Wed, 14 May 2008) | 1 line
+
+Removes unneeded files.
+------------------------------------------------------------------------
+r31 | jeffrey.bigham | 2008-05-14 15:23:52 -0600 (Wed, 14 May 2008) | 1 line
+
+Removes files that were moved elsewhere.
+------------------------------------------------------------------------
+r30 | jeffrey.bigham | 2008-05-14 15:22:29 -0600 (Wed, 14 May 2008) | 1 line
+
+Changes main README to accurately reflect license.
+------------------------------------------------------------------------
+r29 | jeffrey.bigham | 2008-05-14 15:01:27 -0600 (Wed, 14 May 2008) | 1 line
+
+Adds the first TTS engine wrapper, the one for the Festival TTS engine.
+------------------------------------------------------------------------
+r28 | jeffrey.bigham | 2008-05-14 12:27:38 -0600 (Wed, 14 May 2008) | 1 line
+
+Adds additional comments to the main script files and removes some functions that are no longer used.
+------------------------------------------------------------------------
+r24 | jeffrey.bigham | 2008-05-13 16:53:36 -0600 (Tue, 13 May 2008) | 1 line
+
+Adds the keymapping file that will be used to provide personalized mappings from specific key strings to functionality.
+------------------------------------------------------------------------
+r23 | jeffrey.bigham | 2008-05-13 16:52:05 -0600 (Tue, 13 May 2008) | 1 line
+
+Removes unused request.js.
+------------------------------------------------------------------------
+r22 | jeffrey.bigham | 2008-05-13 16:51:10 -0600 (Tue, 13 May 2008) | 1 line
+
+Unifies helper.js and utils.js into only utils.js.
+------------------------------------------------------------------------
+r21 | jeffrey.bigham | 2008-05-13 16:36:56 -0600 (Tue, 13 May 2008) | 1 line
+
+Cleans up/unifies the way multiple scripts are included.
+------------------------------------------------------------------------
+r20 | jessica.O.leung | 2008-04-29 00:44:03 -0600 (Tue, 29 Apr 2008) | 1 line
+
+
+------------------------------------------------------------------------
+r11 | jeffrey.bigham | 2008-03-28 10:04:49 -0600 (Fri, 28 Mar 2008) | 1 line
+
+Adds some needed flags.
+------------------------------------------------------------------------
+r5 | jeffrey.bigham | 2008-02-11 22:54:43 -0700 (Mon, 11 Feb 2008) | 1 line
+
+Checkin of subdomain check for PHProxy.php.
+------------------------------------------------------------------------
+r4 | jeffrey.bigham | 2008-02-11 20:41:48 -0700 (Mon, 11 Feb 2008) | 1 line
+
+
+------------------------------------------------------------------------
+r3 | jeffrey.bigham | 2008-02-10 13:57:17 -0700 (Sun, 10 Feb 2008) | 1 line
+
+Initial checkin of a minimal README file.
+------------------------------------------------------------------------
+r2 | jeffrey.bigham | 2008-02-05 15:27:40 -0700 (Tue, 05 Feb 2008) | 1 line
+
+Initial commit of the WebAnywhere source code.
+------------------------------------------------------------------------
+r1 | jeffrey.bigham | 2008-02-05 15:19:56 -0700 (Tue, 05 Feb 2008) | 1 line
+
+
+------------------------------------------------------------------------

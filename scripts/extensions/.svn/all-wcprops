@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/311/trunk/scripts/extensions
+END
+macro-recorder.js
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/192/trunk/scripts/extensions/macro-recorder.js
+END
+visual-spotlighter.js
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/299/trunk/scripts/extensions/visual-spotlighter.js
+END
+selection-reading-extension.js
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/308/trunk/scripts/extensions/selection-reading-extension.js
+END
+label-for-node-preprocessor.js
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/69/trunk/scripts/extensions/label-for-node-preprocessor.js
+END
+webtrax.js
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/311/trunk/scripts/extensions/webtrax.js
+END
+recorder-extension.js
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/299/trunk/scripts/extensions/recorder-extension.js
+END
+scroll-into-view-spotlighter.js
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/192/trunk/scripts/extensions/scroll-into-view-spotlighter.js
+END
+autocomplete-off-node-preprocessor.js
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/69/trunk/scripts/extensions/autocomplete-off-node-preprocessor.js
+END
+inpage-link-preprocessor.js
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/181/trunk/scripts/extensions/inpage-link-preprocessor.js
+END
+tabindex-preprocessor.js
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/192/trunk/scripts/extensions/tabindex-preprocessor.js
+END
+aria-extension.js
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/192/trunk/scripts/extensions/aria-extension.js
+END
+text-chunker-node-preprocessor.js
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/163/trunk/scripts/extensions/text-chunker-node-preprocessor.js
+END
+blocked.html
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/298/trunk/scripts/extensions/blocked.html
+END
+filter-detect.js
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/311/trunk/scripts/extensions/filter-detect.js
+END
+extensions.js
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/231/trunk/scripts/extensions/extensions.js
+END
