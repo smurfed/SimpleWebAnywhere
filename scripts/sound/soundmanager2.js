@@ -1815,5 +1815,5 @@ function SoundManager(smURL,smID) {
 
 // set var SM2_DEFER = true; in your own script to prevent auto start-up
 if (typeof SM2_DEFER == 'undefined' || !SM2_DEFER) {
-  soundManager = new SoundManager(SimpleWebAnyhwere + '/components/soundmanager2.swf');
+  soundManager = new SoundManager(top.script_home + '/components/soundmanager2.swf');
 }
