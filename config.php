@@ -1,6 +1,6 @@
 <?php
 
-  // Burgers $ Fries- June3 2011
+  
   // This file contains the configurable paths and options
   // made available by WebAnywhere.
   // The default configuration assumes installation on your local machine:
@@ -21,7 +21,7 @@
   // $fixed_locale = 'zh_CN';
 
   // The relative path to WebAnywhere on the web server.
-  $root_path = '/wa';
+  $root_path = '/SimpleWebAnywhere';
 
   // The path to the script minimizer code.
   $min_script_path = $root_path . '/min';
@@ -42,8 +42,12 @@
   // but you can use the WebAnywhere server for this purpose.
 
   // if $sound_url_base is not set. It will be automatically set to one of following voices according to the locale.
+  // smoothGirl voice:
   //$voices["en"] = 'http://webanywhere.cs.washington.edu/cgi-bin/ivona/getsound.pl?text=$text$&cache=1&mtts=1'; // English
-  $voices["en"] = 'http://localhost/wa/tts/espeak/getsound.pl?lang=en&text=$text$'; // English
+  // robotGuy voice:
+  $voices["en"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=en&text=$text$'; // English
+  // If you have espeak installed:
+  //$voices["en"] = 'http://localhost/wa/tts/espeak/getsound.pl?lang=en&text=$text$'; // English
   $voices["zh_CN"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=mandarin&text=$text$'; // Simplified Chinese
   $voices["zh_TW"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=mandarin&text=$text$'; // Traditional Chinese
   $voices["de"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=de&text=$text$'; // German
