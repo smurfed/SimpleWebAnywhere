@@ -749,7 +749,7 @@ function proxifyURL(loc, subdomain, cacheable, rewrite) {
   }
 
   // Add device mimicking information
-  loc = WA.Utils.addDeviceToMimic(loc);
+  //loc = WA.Utils.addDeviceToMimic(loc);
   
   return loc;
 }
