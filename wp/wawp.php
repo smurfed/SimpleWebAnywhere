@@ -703,10 +703,13 @@ do {
   }
 
   if(isset($_SERVER['HTTP_USER_AGENT'])) {
-    //$_request_headers .= 'User-Agent: ' . $_SERVER['HTTP_USER_AGENT'] . "\r\n";
+    $_request_headers .= 'User-Agent: ' . $_SERVER['HTTP_USER_AGENT'] . "\r\n";
     
     // iPhone
-    $_request_headers .= 'User-Agent: ' . "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3 like Mac OS X; de-de) AppleWebKit/533.17.9 (KHTML, like Gecko) Mobile/8F190" . "\r\n";
+    //$_request_headers .= 'User-Agent: ' . "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3 like Mac OS X; de-de) AppleWebKit/533.17.9 (KHTML, like Gecko) Mobile/8F190" . "\r\n";
+    
+    // iPhone iOS 3.0
+    //$_request_headers .= 'User-Agent: ' . "Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1C25 Safari/419.3" . "\r\n";
     
     // Android
     //$_request_headers .= 'User-Agent: ' . "Mozilla/5.0 (Linux; U; Android 2.1; en-us; Nexus One Build/ERD62) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17" . "\r\n";
@@ -714,7 +717,6 @@ do {
     // BlackBerry
     //$_request_headers .= 'User-Agent: ' . "Mozilla/5.0 (BlackBerry; U; BlackBerry 9800; en-US) AppleWebKit/534.8+ (KHTML, like Gecko) Version/6.0.0.466 Mobile Safari/534.8+" . "\r\n";
   }
-    //$_request_headers .= 'User-Agent: ' . "Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1C25 Safari/419.3" . "\r\n";
   
   
   if(isset($_SERVER['HTTP_ACCEPT'])) {
