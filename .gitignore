@@ -11,3 +11,5 @@ thumbs.db
 .project
 .settings/
 
+# Ignore eSpeak software for local TTS for WebAnywhere
+/espeak*
