@@ -1,0 +1,13 @@
+# Ignore OS X and Windows system files
+.DS_Store
+thumbs.db
+
+# Ignore all Subversion folders
+.svn
+
+# Ignore Eclipse specific files
+.buildpath
+.classpath
+.project
+.settings/
+
