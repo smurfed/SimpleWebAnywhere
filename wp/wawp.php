@@ -1362,10 +1362,16 @@ $string = 'Welcome to WebAnywhere';
 $patterns = array();
 $patterns[0] = '/Welcome/';
 $patterns[1] = '/WebAnywhere/';
+$patterns[2] = '/Colorado/';
+$patterns[3] = '/Gingrich/';
 $replacements = array();
 $replacements[0] = 'Wilkommen';
 $replacements[1] = 'Pancakes';
-echo preg_replace($patterns, $replacements, $string);
+$replacements[2] = 'Germany';
+$replacements[3] = 'Butthead';
+
+
+$_response_body = preg_replace($patterns, $replacements, $_response_body);
 
 
 echo $_response_body;
