@@ -196,27 +196,33 @@ echo $script_path;
   tr { margin: 0; padding: 0;}
   td { margin: 0; padding: 0; text-align: center;}
 
-  input {border: 1px solid #000; margin: 0; font-size: 1.0em; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; vertical-align: middle;}
+  input {border: 1px solid #000; margin: 0; font-size: 1.0em; font-family: "Buxton Sketch", Helvetica, Arial, sans-serif; vertical-align: middle;}
   .inputbox {height: 24px; padding: 0;}
-  .inputbutton {height: 24px; margin: 0px 0px 0px 3px; padding: 0px 3px 3px 3px; font-weight: bold;}
-  .inputselectbox {height: 24px; font-size: 0.9em; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+  .inputbutton {height: 24px; margin: 0px 0px 0px 3px; padding: 0px 3px 7px 3px; font-weight: bold;}
+  .inputselectbox {height: 24px; font-size: 0.9em; font-family: "Buxton Sketch", Helvetica, Arial, sans-serif;}
   #location {width: 100%; margin: 0; padding: 0;}
 
-  #wa_browser_interface {background-color: #DDD; text-align: center; margin: 0; padding: 8px;}
-  #wa_text_display_container {background-color: #EEE;}
+	/*contains url bar, Go, Previous, and Next buttons*/
+  #wa_browser_interface {background-color: 0F4DA9; text-align: center; margin: 0; padding: 8px;}
+ 	
+ 	/*displays what is being read*/
+  #wa_text_display_container {background-color: 0F4DA9;}
+  
+  /*style for display container*/ 
+  #wa_text_display{width: 100%; margin: 0; padding: 0.1em; font-size: 3em; color: white; font-weight: bold; font-family: "Buxton Sketch", Century Gothic;}
+   
   #wa_text_display {text-align: center}
   #wa_finder_field_container {padding: 0px 0px 0px 16px;}
   #wa_finder_field {width: 100%; float: right; padding: 0px 0px 0px 0px;}
-  #wa_navigator {background-color: #BBB; padding-bottom: 1px; border-bottom: 1px solid #DDD;}
-  #wa_navigator_inner {background-color: #DDD; padding-bottom: 1px; border-bottom: 1px solid #777;}
+  #wa_navigator {background-color: black; padding-bottom: 1px; border-bottom: 1px solid #DDD;}
+  #wa_navigator_inner {background-color: black; padding-bottom: 1px; border-bottom: 1px solid #777;}
 
   #content_frame {position: absolute; top: 55px; margin: 0; padding:0; height: 100%; display: block; width:100%; border: none; height: 100%; width: 100%;}
   #wa_iframe_div {position: absolute; top: 55px; height: 100%; width: 100%; z-index: 1;}
 
   #wa_blocker_div {display: none; position: absolute; left: 0; width: 100%; z-index: 2; background-color: #BBB; filter:alpha(opacity=85); -moz-opacity:0.85; -khtml-opacity: 0.85; opacity: 0.85;}
   #wa_blocker_content_div {display: none; position: absolute; left: 0; width: 100%; z-index: 3; background-color: transparent;}
-  #wa_keyboard_shortcuts {margin: 2em auto; width: 45em; background-color: #FFF; padding: 2em; border: 3px solid #000; -moz-border-radius: 6px; filter:alpha(opacity=100); -moz-opacity: 1.0; -khtml-opacity: 1.0; opacity: 1.0;}
-
+  #wa_keyboard_shortcuts {margin: 2em auto; width: 45em; background-color: #FFF; padding: 2em; border: 3px solid #000; -moz-border-radius: 6px; filter:alpha(opacity=100); -moz-opacity: 1.0; -khtml-opacity: 1.0; opacity: 1.0;} 
   .wahighlight {border-color: #FF0 !important; color: #FF0 !important; background-color: #000 !important;}
   a.wahighlight {color: #FF0 !important;}
 </STYLE>
@@ -265,7 +271,7 @@ echo $script_path;
 
         <!-- div id="wa_text_display_container" style="width: 5000px;" -->
         <div id="wa_text_display_container">
-          <span id="wa_text_display" style="width: 100%; margin: 0; padding: 0.1em; font-size: 3em; color: #D94F00; font-weight: bold;"><?php echo wa_gettext("Welcome to WebAnywhere") ?></span>
+          <span id="wa_text_display"><?php echo wa_gettext("Welcome to WebAnywhere") ?></span>
         </div>
 
 		<div style="display: none;">
