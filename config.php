@@ -7,7 +7,7 @@
   // Appropriate changes can be made to localize to your preference.
 
   // Email to which errors can be sent.
-  $admin_email = 'smurfed@gmail.com';
+  $admin_email = 'admin@yourdomain.org';
 
   // The domain where WebAnywhere is located.
   // Among other things, this enables the system to check if content has been
