@@ -1,6 +1,4 @@
 <?php
-
-  
   // This file contains the configurable paths and options
   // made available by WebAnywhere.
   // The default configuration assumes installation on your local machine:
@@ -47,7 +45,7 @@
   //$voices["en"] = 'http://webanywhere.cs.washington.edu/cgi-bin/ivona/getsound.pl?text=$text$&cache=1&mtts=1'; // English
   // Robot Guy voice:
   $voices["en"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=en&text=$text$'; // English
-  // If you have espeak installed:
+  // If you have espeak installed locally:
   //$voices["en"] = 'http://localhost/wa/tts/espeak/getsound.pl?lang=en&text=$text$'; // English
   $voices["zh_CN"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=mandarin&text=$text$'; // Simplified Chinese
   $voices["zh_TW"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=mandarin&text=$text$'; // Traditional Chinese
