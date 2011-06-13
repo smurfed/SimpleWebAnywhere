@@ -43,68 +43,10 @@ $start_url = str_replace('$url', $start_url, $wp_path);
 <TITLE>WebAnywhere - Your Access Technology Anywhere</TITLE>
 <link rel="stylesheet" type="text/css" href="index.css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<SCRIPT LANGUAGE="Javascript">
-/* <![CDATA[ */
-var old_open = window.open;
-window.open = function() {}
-var navLoaded = false;
-function navigationLoad() {
-  navLoaded = true;
-}
-
-var returning = false;
-
-if(window.addEventListener) {
-  window.addEventListener('focus', focus_webanywhere, false);
-  window.addEventListener('blur', blur_webanywhere, true);
-  window.addEventListener('unload', unload_webanywhere, false);
-} else if(window.attachEvent) {
-  window.attachEvent('onfocus', focus_webanywhere);
-  window.attachEvent('onblur', blur_webanywhere);
-  window.attachEvent('onunload', unload_webanywhere);
-}
-function announce_in_focus() {
-  if(returning && navLoaded) {
-    if(window.navigation_frame) {
-      window.navigation_frame.prefetch("Web Anywhere is now in focus.", true, false);
-      window.navigation_frame.WA.Interface.focusLocation();
-    } else {
-      setTimeout("announce_in_focus", 1000);
-    }
-  }
-}
-function focus_webanywhere() {
-  //announce_in_focus();
-  returning = false;
-}
-
-function blur_webanywhere() {
-  //window.navigation_frame.prefetch("Another window has tried to replace the focus of Web Anywhere.  If the system is not responding, please try hitting alt-tab to return to this window.", true, false);
-  //window.navigation_frame.focus();
-  returning = true;
-}
-
-function unload_webanywhere() {
-  //window.navigation_frame.prefetch("Web Anywhere is being unloaded.  If the system stops responding, try pressing either backspace or alt + left arrow to return to this page.", true, false);
-  //returning = true;
-}
-
-// Called onload and onresize to resize the 
-function resizeContentFrame() {
-
-  var newHeight = WA.Utils.contentWidthHeight(top)[1] -
-                    (document.getElementById('wa_navigator').offsetHeight);
-
-  document.getElementById('content_frame').style.height = newHeight + 'px';
-  document.getElementById('wa_iframe_div').style.height = newHeight + 'px';
-}
-/* ]]> */
-</SCRIPT>
 
 <?php // Start of the WebAnywhere code. ?>
-<script type="text/javascript" src="<?php
-echo $script_path;
-?>/js-config.php"></script>
+
+
 <?php
 // It's about a million times easier to debug Javascript when your source files
 // haven't been messed with.  Unfortunately, it's also slower and causes the
@@ -184,6 +126,7 @@ WA.sessionid="<?php echo session_id(); ?>";
 function browserOnload() {
 }
 </script>
+
 <script type="text/javascript" src="<?php
 echo $script_path;
 ?>/input/keymapping.php"></script>
@@ -269,6 +212,12 @@ echo $script_path;
     <DIV ID="wa_blocker_content_div"></DIV>
     <?php if($webtrax){ ?>
       <script src="scripts/extensions/flash/swfobject.js" type="text/javascript"></script>
+   
     <?php } ?>
+    <script type="text/javascript" src="/index.js"></script>
+    <script type="text/javascript" src="<?php
+echo $script_path;
+?>/js-config.php"></script>
+
 </body>
 </html>

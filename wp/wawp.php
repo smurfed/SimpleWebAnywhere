@@ -1360,14 +1360,19 @@ for ($i = 0, $count_i = count($matches); $i < $count_i; ++$i) {
 
 $string = 'Welcome to WebAnywhere';
 $patterns = array();
-$patterns[0] = '/Welcome/';
-$patterns[1] = '/WebAnywhere/';
+$patterns[0] = '/Eggplant/';
 $replacements = array();
-$replacements[0] = 'Wilkommen';
-$replacements[1] = 'Pancakes';
-echo preg_replace($patterns, $replacements, $string);
+$replacements[0] =  'Banana';
 
+$_response_body = preg_replace($patterns, $replacements, $_response_body);
 
 echo $_response_body;
 
+/*
+if($_content_type == 'text/css' href='index.css') {
+  $_response_body = proxify_css($_response_body);
+} else if($_content_type == 'application/x-javascript') {
+
+    $_response_body = str_replace('window.self != window.top', 'false', $_response_body);
+*/
 ?>
