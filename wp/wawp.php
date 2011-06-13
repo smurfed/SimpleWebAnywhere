@@ -1360,24 +1360,10 @@ for ($i = 0, $count_i = count($matches); $i < $count_i; ++$i) {
 
 $string = 'Welcome to WebAnywhere';
 $patterns = array();
-<<<<<<< HEAD
-$patterns[0] = '/Eggplant/';
-$replacements = array();
-$replacements[0] =  'Banana';
-=======
 $patterns[0] = '/Welcome/';
-$patterns[1] = '/WebAnywhere/';
-$patterns[2] = '/Colorado/';
-$patterns[3] = '/Gingrich/';
 $replacements = array();
 $replacements[0] = 'Wilkommen';
-$replacements[1] = 'Pancakes';
-$replacements[2] = 'Germany';
-$replacements[3] = 'Butthead';
 
-
-$_response_body = preg_replace($patterns, $replacements, $_response_body);
->>>>>>> e42fe24041e13d0557e017ea93eedda864433eca
 
 $_response_body = preg_replace($patterns, $replacements, $_response_body);
 
