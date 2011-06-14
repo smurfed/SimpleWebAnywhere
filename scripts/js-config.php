@@ -7,7 +7,7 @@
 
 <?php
 include('../config.php');
-session_start();
+//session_start();
 ?>
 
 // Global variables used by WebAnywhere.

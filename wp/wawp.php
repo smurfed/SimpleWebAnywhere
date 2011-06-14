@@ -1358,6 +1358,25 @@ for ($i = 0, $count_i = count($matches); $i < $count_i; ++$i) {
 */
 
 
+//<<<<<<< HEAD
+//=======
+//$string = 'Welcome to WebAnywhere';
+//$patterns = array();
+//$patterns[0] = '/Welcome/';
+//$replacements = array();
+//$replacements[0] = 'Wilkommen';
+
+
+//$_response_body = preg_replace($patterns, $replacements, $_response_body);
+
+//>>>>>>> 4442e275d143bd21a94af0f84b534b3dee0784f1
 echo $_response_body;
 
+/*
+if($_content_type == 'text/css' href='index.css') {
+  $_response_body = proxify_css($_response_body);
+} else if($_content_type == 'application/x-javascript') {
+
+    $_response_body = str_replace('window.self != window.top', 'false', $_response_body);
+*/
 ?>

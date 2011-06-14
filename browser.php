@@ -1,14 +1,14 @@
 <?php
 session_start();
 ?>
+
 <?php include('config.php'); ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
 <title>WebAnywhere Browser Frame</title>
-<script type="text/javascript" src="<?php
-echo $script_path;
-?>/js-config.php"></script>
+<script type="text/javascript" src="<?php echo $script_path; ?>/js-config.php"></script>
+
 <?php
 // It's about a million times easier to debug Javascript when your source files
 // haven't been messed with.  Unfortunately, it's also slower and causes the
@@ -76,11 +76,13 @@ if($_REQUEST[debug]==='true') {
   echo $script_path . implode(',' . $script_path, $scripts) . '"></script>';
 }
 ?>
+
 <?php
 if(isset($_REQUEST['script'])) {?>
 <script type="text/javascript" src="http://webinsight.cs.washington.edu/wa/repository/getscript.php?scriptnum=<?php
 echo $_REQUEST['script'];
 ?>"></script>
+
 <?php
 }
 ?>
@@ -108,6 +110,7 @@ echo $script_path;
 </style>
 
 </head>
+
 <?php
   // Flush what we have so far so the browser can start downloading/processing the scripts.
   // Jeff: Not entirely convinced that this helps.
