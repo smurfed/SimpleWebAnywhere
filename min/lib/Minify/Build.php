@@ -101,3 +101,5 @@ class Minify_Build {
         $this->lastModified = $max;
     }
 }
+
+?>

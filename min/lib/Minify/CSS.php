@@ -81,3 +81,5 @@ class Minify_CSS {
         }
     }
 }
+
+?>
