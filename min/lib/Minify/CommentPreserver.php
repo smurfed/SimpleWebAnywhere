@@ -88,3 +88,5 @@ class Minify_CommentPreserver {
         return $ret;
     }
 }
+
+?>

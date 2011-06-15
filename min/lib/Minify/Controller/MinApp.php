@@ -130,3 +130,5 @@ class Minify_Controller_MinApp extends Minify_Controller_Base {
         return $options;
     }
 }
+
+?>

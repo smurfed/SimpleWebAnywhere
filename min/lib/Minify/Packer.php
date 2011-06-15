@@ -35,3 +35,5 @@ class Minify_Packer {
         return trim($packer->pack());
     }
 }
+
+?>

@@ -128,3 +128,5 @@ class Minify_Cache_APC {
         return true;
     }
 }
+
+?>

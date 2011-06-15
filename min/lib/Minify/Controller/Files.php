@@ -76,3 +76,4 @@ class Minify_Controller_Files extends Minify_Controller_Base {
     }
 }
 
+?>
