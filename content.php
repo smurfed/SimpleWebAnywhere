@@ -2,17 +2,10 @@
 <html>
 <head>
 <title>Welcome to WebAnywhere</title>
-<style>
-.hidden {position: absolute; top: -1000px;}
-body {font-family: Georgia, "Times New Roman", Times, serif;}
-h1 { text-align: center; width: 400px; height: 142px; background-image: url(images/wa-logo.png); }
-.wa-outer-container { width: 50%; min-width: 400px; margin: 0 auto; padding: 0;}
-.wa-heading-container {margin: 0 auto 2em auto; padding: 0;}
-.wa-content-container {margin: 0; padding-left: 70px;}
-li {margin: 0; padding: 0.1em;}
-</style>
+<link rel="stylesheet" type="text/css" href="content.css"/>
+
 </head>
-<body bgcolor="#FFFFFF">
+<body>
 <?php
 if(!isset($_REQUEST['submit'])) {
 ?>

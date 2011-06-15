@@ -47,6 +47,7 @@ input {
 	margin: 0px 0px 0px 3px;
 	padding: 0px 3px 7px 3px;
 	font-weight: bold;
+	background-image: url('westbrook.jpg');
 }
 
 .inputselectbox {
@@ -72,6 +73,7 @@ input {
 /*displays what is being read*/
 #wa_text_display_container {
 	background-color:0F4DA9;
+	
 }
 
 /*style for display container*/
@@ -83,6 +85,8 @@ input {
 	color: white;
 	font-weight: bold;
 	font-family: "Buxton Sketch", Century Gothic;
+	
+
 }
 
 #wa_text_display {
@@ -176,3 +180,4 @@ input {
 a.wahighlight {
 	color: #FF0 !important;
 }
+/*DAMEj*/
