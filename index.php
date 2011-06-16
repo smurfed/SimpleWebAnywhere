@@ -143,15 +143,15 @@ echo $script_path;
       <div ID="wa_navigator_inner">
 
       <div id="wa_browser_interface">
-	        <table width="100%">
-	            <tr width="100%">
-	              <form onSubmit="javascript:navigate(this);return false;" id="Form1" class="formclass" style="margin: 0; padding: 0; display: inline;" autocomplete="off">
-	                <td width="60%">
-	                    <label for="location" style="position: absolute; top: -100px">Location:&nbsp;</label>
+	        <table id="table1">
+	            <tr id="tr1">
+	              <form onSubmit="javascript:navigate(this);return false;" id="Form1" autocomplete="off">
+	                <td id="td1">
+	                    <label for="location" id="label1">Location:&nbsp;</label>
 	                    <input class="inputbox" type="text" id="location" autocomplete="off"/>
 	                </td>
 	                <td>
-	                	<label for="deviceselection" style="position: absolute; top: -100px">Device:&nbsp;</label>
+	                	<label for="deviceselection" id="label2 style="position: absolute; top: -100px"></label>
 	                	<select id="deviceselection" class="inputselectbox">
 							<option value="browser"><?php echo wa_gettext('Current Browser') ?></option>
 							<option value="simplest"><?php echo wa_gettext('Simplest') ?></option>
@@ -164,8 +164,8 @@ echo $script_path;
 	                    <input class="inputbutton" name="go" type="submit" value="<?php echo wa_gettext('Go') ?>" id="location_go" onclick='navigate(this); return false;'/>
 	                </td>
 	              </form>
-	              <form onSubmit="javascript:nextNodeContentFinder(this);return false;" id="Form2" class="formclass" style="margin: 0; padding: 0; display: inline;" autocomplete="off">
-	                <td width="20%" id="wa_finder_field_container">
+	              <form onSubmit="javascript:nextNodeContentFinder(this);return false;" id="Form2" class="formclass" autocomplete="off">
+	                <td id="wa_finder_field_container">
 	                    <input class="inputbox" type="text" name="finder_field" id="wa_finder_field"/>
 	                </td>
 	                <td>
@@ -197,7 +197,7 @@ echo $script_path;
             </div>
             <?php if(isset($_REQUEST['debug']) && $_REQUEST['debug']==='true') { ?>
             <p>
-                <form name="recorder_form" id="Form3" class="formclass" method="post" action="recorder.php"><br/>
+                <form name="recorder_form" id="Form3" method="post" action="recorder.php"><br/>
                     <input name="submit" type="submit" value="submit">
                     <textarea id="recording" name="recording" rows="30" cols="150"></textarea>
                 </form>
