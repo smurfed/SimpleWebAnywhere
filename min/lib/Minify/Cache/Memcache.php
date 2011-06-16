@@ -135,3 +135,5 @@ class Minify_Cache_Memcache {
         return true;
     }
 }
+
+?>

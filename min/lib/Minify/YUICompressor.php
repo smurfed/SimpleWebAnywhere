@@ -137,3 +137,5 @@ class Minify_YUICompressor {
     }
 }
 
+?>
+

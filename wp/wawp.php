@@ -1358,7 +1358,10 @@ for ($i = 0, $count_i = count($matches); $i < $count_i; ++$i) {
 */
 
 /*<<<<<<< HEAD
+<<<<<<< HEAD
 /*
+=======
+>>>>>>> 6dad4fd719352f81abb58761635f592e05c73b35
 $string = 'Welcome to WebAnywhere';
 $patterns = array();
 $patterns[0] = '/Eggplant/';
@@ -1367,8 +1370,12 @@ $replacements[0] =  'Banana';
 
 $_response_body = preg_replace($patterns, $replacements, $_response_body);
 */
+<<<<<<< HEAD
 
 
+=======
+//=======
+>>>>>>> 6dad4fd719352f81abb58761635f592e05c73b35
 //<<<<<<< HEAD
 //=======
 //$string = 'Welcome to WebAnywhere';
@@ -1381,7 +1388,11 @@ $_response_body = preg_replace($patterns, $replacements, $_response_body);
 //$_response_body = preg_replace($patterns, $replacements, $_response_body);
 
 //>>>>>>> 4442e275d143bd21a94af0f84b534b3dee0784f1
+<<<<<<< HEAD
 /*>>>>>>> 336aee53bda109c58cb1b6a88c3d87a60b9f8ca5*/
+=======
+//>>>>>>> 336aee53bda109c58cb1b6a88c3d87a60b9f8ca5
+>>>>>>> 6dad4fd719352f81abb58761635f592e05c73b35
 echo $_response_body;
 
 /*

@@ -129,3 +129,5 @@ class Minify_Lines {
             : '/* ' . str_pad($note, $padTo, ' ', STR_PAD_RIGHT) . ' */ ' . $line;
     }
 }
+
+?>

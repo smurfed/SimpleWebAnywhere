@@ -200,3 +200,5 @@ abstract class Minify_Controller_Base {
         Minify_Logger::log($msg);
     }
 }
+
+?>

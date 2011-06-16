@@ -248,3 +248,5 @@ class Minify_CSS_Compressor {
         return 'font-family:' . $m[1] . $m[2];
     }
 }
+
+?>
