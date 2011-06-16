@@ -1090,6 +1090,7 @@ class FirePHP {
   */
   private function json_utf82utf16($utf8)
   {
+  	//um interesting comment 0.o
       // oh please oh please oh please oh please oh please
       if(function_exists('mb_convert_encoding')) {
           return mb_convert_encoding($utf8, 'UTF-16', 'UTF-8');
@@ -1368,3 +1369,5 @@ class FirePHP {
       return $this->json_encode(strval($name)) . ':' . $encoded_value;
   }
 }
+
+?>

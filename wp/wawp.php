@@ -1370,12 +1370,12 @@ $replacements[0] =  'Banana';
 
 $_response_body = preg_replace($patterns, $replacements, $_response_body);
 */
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
 
-=======
 //=======
->>>>>>> 6dad4fd719352f81abb58761635f592e05c73b35
+//=======
+//>>>>>>> 6dad4fd719352f81abb58761635f592e05c73b35
 //<<<<<<< HEAD
 //=======
 //$string = 'Welcome to WebAnywhere';
@@ -1388,11 +1388,11 @@ $_response_body = preg_replace($patterns, $replacements, $_response_body);
 //$_response_body = preg_replace($patterns, $replacements, $_response_body);
 
 //>>>>>>> 4442e275d143bd21a94af0f84b534b3dee0784f1
-<<<<<<< HEAD
+//<<<<<<< HEAD
 /*>>>>>>> 336aee53bda109c58cb1b6a88c3d87a60b9f8ca5*/
-=======
+//=======
 //>>>>>>> 336aee53bda109c58cb1b6a88c3d87a60b9f8ca5
->>>>>>> 6dad4fd719352f81abb58761635f592e05c73b35
+//>>>>>>> 6dad4fd719352f81abb58761635f592e05c73b35
 echo $_response_body;
 
 /*
