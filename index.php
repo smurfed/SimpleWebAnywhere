@@ -139,6 +139,7 @@ echo $script_path;
 </HEAD>
 
 <body>
+
     <div ID="wa_navigator">
       <div ID="wa_navigator_inner">
 
@@ -161,22 +162,24 @@ echo $script_path;
 						</select>
 					</td>
 	                <td>
-	                    <input class="inputbutton" name="go" type="submit" value="<?php echo wa_gettext('Go') ?>" id="location_go" onclick='navigate(this); return false;'/>
+	                     <img src="images/GrabItDi3.gif" input class="inputbutton" name="go" type="submit" value="<?php echo wa_gettext('Go') ?> "id="location_go" onclick='navigate(this); return false;'/>
 	                </td>
 	              </form>
-	              <form onSubmit="javascript:nextNodeContentFinder(this);return false;" id="Form2" class="formclass" autocomplete="off">
+	              <form onSubmit="javascript:nextNodeContentFinder(this);return false;" id="Form2" autocomplete="off">
 	                <td id="wa_finder_field_container">
 	                    <input class="inputbox" type="text" name="finder_field" id="wa_finder_field"/>
 	                </td>
 	                <td>
-	                    <input class="inputbutton" id="find_previous_button" name="find_previous_button" type="button" value="<?php echo wa_gettext('Previous') ?>" onclick='prevNodeContentFinder(this); return false;'/>
+	                    <img src="images/DataBrowserDb0.gif" input class="inputbutton" id="find_previous_button" name="find_previous_button" type="button" value="<?php echo wa_gettext('Previous') ?>" onclick='prevNodeContentFinder(this); return false;'/>
 	                    
 	                </td>
 	                <td>
-	                    <input class="inputbutton" id="find_next_button" name="find_next_button" type="button" value="<?php echo wa_gettext('Next') ?>" onclick='nextNodeContentFinder(this); return false;'/>
+	                    <img src="images/DataBrowserDc0.gif" input class="inputbutton" id="find_next_button" name="find_next_button" type="button" value="<?php echo wa_gettext('Next') ?>" onclick='nextNodeContentFinder(this); return false;'/>
 	                </td>
+	                
 	              </form>
 	            </tr>
+	            
 	        </table>
         </div>
 

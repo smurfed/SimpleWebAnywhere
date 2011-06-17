@@ -67,11 +67,15 @@ input {
 	text-align: center;
 	margin: 0;
 	padding: 8px;
+	/*background-image: url(images/OSGbg.jpg);
+	background-repeat:repeat-x;*/
 }
 
 /*displays what is being read*/
 #wa_text_display_container {
 	background-color: 0F4DA9;
+	/*background-image: url(images/VistaBG2.jpg);
+	background-repeat:repeat-y;*/
 }
 
 /*style for display container*/
@@ -83,6 +87,7 @@ input {
 	color: white;
 	font-weight: bold;
 	font-family: "Buxton Sketch", Century Gothic;
+	
 }
 
 #wa_text_display {
@@ -198,7 +203,7 @@ a.wahighlight {
 #label2
 {
 	position: absolute; 
-	top: -100px"	
+	top: -100px;	
 }
 #table1
 {
@@ -214,4 +219,25 @@ a.wahighlight {
 }
 
 
+#find_previous_button
+{
+   /* background-image: url(images/DataBrowserDb0.gif);*/	
+    color:transparent;
+    background-repeat: no-repeat;
+    /*width:100%;
+    height:100%;*/
+}
+#find_next_button
+{
+  /*background-image: url(images/DataBrowserDc0.gif);	
+  background-repeat: no-repeat;*/
+  color:transparent;
+}
+#location_go
+{
+	
+	background-repeat: no-repeat;
+	background-size:85%;
+	/*color:transparent;*/
+	}
 /*DAMEj*/
