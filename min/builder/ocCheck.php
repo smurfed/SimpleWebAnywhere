@@ -34,3 +34,5 @@ if (isset($_GET['hello'])) {
     header('Content-Type: text/plain');
     echo (int)$_oc;
 }
+
+?>
