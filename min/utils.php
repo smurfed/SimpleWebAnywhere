@@ -88,3 +88,5 @@ function _Minify_getBuild($group)
     }
     return $builds[$group];
 }
+
+?>
