@@ -123,3 +123,5 @@ class Minify_Cache_File {
     private $_path = null;
     private $_locking = null;
 }
+
+?>

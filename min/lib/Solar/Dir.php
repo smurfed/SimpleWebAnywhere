@@ -197,3 +197,5 @@ class Solar_Dir {
         return getenv('SystemRoot') . '\\temp';
     }
 }
+
+?>

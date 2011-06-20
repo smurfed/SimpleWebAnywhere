@@ -64,3 +64,5 @@ if (isset($_GET['f']) || isset($_GET['g'])) {
     header("Location: /");
     exit();
 }
+
+?>

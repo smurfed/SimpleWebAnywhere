@@ -44,6 +44,10 @@ $start_url = str_replace('$url', $start_url, $wp_path);
 <link rel="stylesheet" type="text/css" href="index.css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+
+    <script type="text/javascript" src="<?php
+echo $script_path;
+?>/js-config.php"></script>
 <?php // Start of the WebAnywhere code. ?>
 
 
@@ -132,23 +136,23 @@ echo $script_path;
 ?>/input/keymapping.php"></script>
 
 
-
 </HEAD>
 
-<body onload="resizeContentFrame(); browserOnload();" onresize="resizeContentFrame()">
+<body>
+
     <div ID="wa_navigator">
       <div ID="wa_navigator_inner">
 
       <div id="wa_browser_interface">
-	        <table width="100%">
-	            <tr width="100%">
-	              <form onSubmit="javascript:navigate(this);return false;" style="margin: 0; padding: 0; display: inline;" autocomplete="off">
-	                <td width="60%">
-	                    <label for="location" style="position: absolute; top: -100px">Location:&nbsp;</label>
+	        <table id="table1">
+	            <tr id="tr1">
+	              <form onSubmit="javascript:navigate(this);return false;" id="Form1" autocomplete="off">
+	                <td id="td1">
+	                    <label for="location" id="label1">Location:&nbsp;</label>
 	                    <input class="inputbox" type="text" id="location" autocomplete="off"/>
 	                </td>
 	                <td>
-	                	<label for="deviceselection" style="position: absolute; top: -100px">Device:&nbsp;</label>
+	                	<label for="deviceselection" id="label2 style="position: absolute; top: -100px"></label>
 	                	<select id="deviceselection" class="inputselectbox">
 							<option value="browser"><?php echo wa_gettext('Current Browser') ?></option>
 							<option value="simplest"><?php echo wa_gettext('Simplest') ?></option>
@@ -158,21 +162,24 @@ echo $script_path;
 						</select>
 					</td>
 	                <td>
-	                    <input class="inputbutton" name="go" type="submit" value="<?php echo wa_gettext('Go') ?>" id="location_go" onclick='navigate(this); return false;'/>
+	                     <img src="images/GrabItDi3.gif" input class="inputbutton" name="go" type="submit" value="<?php echo wa_gettext('Go') ?> "id="location_go" onclick='navigate(this); return false;'/>
 	                </td>
 	              </form>
-	              <form onSubmit="javascript:nextNodeContentFinder(this);return false;" style="margin: 0; padding: 0; display: inline;" autocomplete="off">
-	                <td width="20%" id="wa_finder_field_container">
+	              <form onSubmit="javascript:nextNodeContentFinder(this);return false;" id="Form2" autocomplete="off">
+	                <td id="wa_finder_field_container">
 	                    <input class="inputbox" type="text" name="finder_field" id="wa_finder_field"/>
 	                </td>
 	                <td>
-	                    <input class="inputbutton" id="find_previous_button" name="find_previous_button" type="button" value="<?php echo wa_gettext('Previous') ?>" onclick='prevNodeContentFinder(this); return false;'/>
+	                    <img src="images/DataBrowserDb0.gif" input class="inputbutton" id="find_previous_button" name="find_previous_button" type="button" value="<?php echo wa_gettext('Previous') ?>" onclick='prevNodeContentFinder(this); return false;'/>
+	                    
 	                </td>
 	                <td>
-	                    <input class="inputbutton" id="find_next_button" name="find_next_button" type="button" value="<?php echo wa_gettext('Next') ?>" onclick='nextNodeContentFinder(this); return false;'/>
+	                    <img src="images/DataBrowserDc0.gif" input class="inputbutton" id="find_next_button" name="find_next_button" type="button" value="<?php echo wa_gettext('Next') ?>" onclick='nextNodeContentFinder(this); return false;'/>
 	                </td>
+	                
 	              </form>
 	            </tr>
+	            
 	        </table>
         </div>
 
@@ -193,11 +200,12 @@ echo $script_path;
             </div>
             <?php if(isset($_REQUEST['debug']) && $_REQUEST['debug']==='true') { ?>
             <p>
-                <form name="recorder_form" method="post" action="recorder.php"><br/>
+                <form name="recorder_form" id="Form3" method="post" action="recorder.php"><br/>
                     <input name="submit" type="submit" value="submit">
                     <textarea id="recording" name="recording" rows="30" cols="150"></textarea>
                 </form>
             </p>
+            
             <?php } ?>
 		</div>
 
@@ -214,10 +222,13 @@ echo $script_path;
       <script src="scripts/extensions/flash/swfobject.js" type="text/javascript"></script>
    
     <?php } ?>
-    <script type="text/javascript" src="/index.js"></script>
-    <script type="text/javascript" src="<?php
-echo $script_path;
-?>/js-config.php"></script>
+    
+<script type="text/javascript" src="indexSetup.js">
+indexSetup();
+</script>
+
+
+
 
 </body>
 </html>

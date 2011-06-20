@@ -116,3 +116,4 @@ class Minify_Controller_Version1 extends Minify_Controller_Base {
     }
 }
 
+?>

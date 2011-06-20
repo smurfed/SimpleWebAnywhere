@@ -43,3 +43,5 @@ class Minify_Logger {
      */
     private static $_logger = null;
 }
+
+?>

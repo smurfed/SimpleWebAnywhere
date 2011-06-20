@@ -92,3 +92,4 @@ class Minify_Controller_Groups extends Minify_Controller_Base {
     }
 }
 
+?>

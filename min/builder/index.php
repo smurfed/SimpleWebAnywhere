@@ -21,23 +21,7 @@ ob_start();
 <head>
     <meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
     <title>Minify URI Builder</title>
-    <style type="text/css">
-body {margin:1em 60px;}
-h1, h2, h3 {margin-left:-25px; position:relative;}
-h1 {margin-top:0;}
-#sources {margin:0; padding:0;}
-#sources li {margin:0 0 0 40px}
-#sources li input {margin-left:2px}
-#add {margin:5px 0 1em 40px}
-.hide {display:none}
-#uriTable {border-collapse:collapse;}
-#uriTable td, #uriTable th {padding-top:10px;}
-#uriTable th {padding-right:10px;}
-#groupConfig {font-family:monospace;}
-b {color:#c00}
-.topNote {background: #ff9; display:inline-block; padding:.5em .6em; margin:0 0 1em;}
-.topWarning {background:#c00; color:#fff; padding:.5em .6em; margin:0 0 1em;}
-    </style>
+    <link rel="stylesheet" type="text/css" href="indexbuilder.css">
 </head>
 
 <?php if (! isset($min_cachePath)): ?>
@@ -119,35 +103,7 @@ source</a></small></p>
 <script type="text/javascript" 
 src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
 
-<script type="text/javascript">
-$(function () {
-    // detection of double output encoding
-    var msg = '<\p class=topWarning><\strong>Warning:<\/strong> ';
-    var url = 'ocCheck.php?' + (new Date()).getTime();
-    $.get(url, function (ocStatus) {
-        $.get(url + '&hello=1', function (ocHello) {
-            if (ocHello != 'World!') {
-                msg += 'It appears output is being automatically compressed, interfering ' 
-                     + ' with Minify\'s own compression. ';
-                if (ocStatus == '1')
-                    msg += 'The option "zlib.output_compression" is enabled in your PHP configuration. '
-                         + 'Minify set this to "0", but it had no effect. This option must be disabled ' 
-                         + 'in php.ini or .htaccess.';
-                else
-                    msg += 'The option "zlib.output_compression" is disabled in your PHP configuration '
-                         + 'so this behavior is likely due to a server option.';
-                $(document.body).prepend(msg + '<\/p>');
-            } else
-                if (ocStatus == '1')
-                    $(document.body).prepend('<\p class=topNote><\strong>Note:</\strong> The option '
-                        + '"zlib.output_compression" is enabled in your PHP configuration, but has been '
-                        + 'successfully disabled via ini_set(). If you experience mangled output you '
-                        + 'may want to consider disabling this option in your PHP configuration.<\/p>'
-                    );
-        });
-    });
-});
-</script>
+<script type="text/javascript" src="indexbuilder.js"></script>
 <script type="text/javascript">
     // workaround required to test when /min isn't child of web root
     var src = location.pathname.replace(/\/[^\/]*$/, '/_index.js').substr(1);
@@ -180,3 +136,4 @@ Minify::setCache(isset($min_cachePath) ? $min_cachePath : null);
 Minify::$uploaderHoursBehind = $min_uploaderHoursBehind;
 
 Minify::serve('Page', $serveOpts);
+?>

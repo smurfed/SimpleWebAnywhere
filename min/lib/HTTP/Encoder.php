@@ -324,3 +324,5 @@ class HTTP_Encoder {
             : ($version < 7);
     }
 }
+
+?>

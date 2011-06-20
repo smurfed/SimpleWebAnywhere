@@ -268,3 +268,5 @@ class Minify_CSS_UriRewriter {
         return rtrim($path, '/\\');
     }
 }
+
+?>

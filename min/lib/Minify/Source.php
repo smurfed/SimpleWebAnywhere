@@ -185,3 +185,4 @@ class Minify_Source {
     protected $_id = null;
 }
 
+?>

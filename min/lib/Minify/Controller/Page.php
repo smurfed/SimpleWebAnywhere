@@ -80,3 +80,4 @@ class Minify_Controller_Page extends Minify_Controller_Base {
     }
 }
 
+?>
