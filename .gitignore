@@ -12,7 +12,7 @@ thumbs.db
 .settings/
 
 # Ignore configuration files
-/config.php
+config.php
 
 # Ignore eSpeak software for local TTS for WebAnywhere
 /espeak*
