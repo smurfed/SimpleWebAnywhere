@@ -41,7 +41,7 @@
   // but you can use the WebAnywhere server for this purpose.
 
   // if $sound_url_base is not set. It will be automatically set to one of following voices according to the locale.
-  // Smooth Girl voice:
+  // Girl voice:
   //$voices["en"] = 'http://webanywhere.cs.washington.edu/cgi-bin/ivona/getsound.pl?text=$text$&cache=1&mtts=1'; // English
   // Robot Guy voice:
   $voices["en"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=en&text=$text$'; // English

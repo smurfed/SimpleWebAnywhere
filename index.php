@@ -144,7 +144,7 @@ echo $script_path;
       <div ID="wa_navigator_inner">
 
       <div id="wa_browser_interface">
-	        <table id="table1">
+	        <table id="table1">	            
 	            <tr id="tr1">
 	              <form onSubmit="javascript:navigate(this);return false;" id="Form1" autocomplete="off">
 	                <td id="td1">
@@ -161,6 +161,7 @@ echo $script_path;
 							<option value="blackberry"><?php echo wa_gettext('BlackBerry') ?></option>
 						</select>
 					</td>
+					
 	                <td>
 	                     <img src="images/GrabItDi3.gif" input class="inputbutton" name="go" type="submit" value="<?php echo wa_gettext('Go') ?> "id="location_go" onclick='navigate(this); return false;'/>
 	                </td>
@@ -173,14 +174,17 @@ echo $script_path;
 	                    <img src="images/DataBrowserDb0.gif" input class="inputbutton" id="find_previous_button" name="find_previous_button" type="button" value="<?php echo wa_gettext('Previous') ?>" onclick='prevNodeContentFinder(this); return false;'/>
 	                    
 	                </td>
-	                <td>
+	                <td>	               
 	                    <img src="images/DataBrowserDc0.gif" input class="inputbutton" id="find_next_button" name="find_next_button" type="button" value="<?php echo wa_gettext('Next') ?>" onclick='nextNodeContentFinder(this); return false;'/>
 	                </td>
-	                
+	                	 <td>	               
+	                    <img src="images/GrabItDg6.gif" input class="inputbutton" id="Language_Button" name="Language_Button" type="button" value="<?php echo wa_gettext('Language') ?>" onclick='WA.Interface.addLanguageChanger()'/>
+	                </td>         
+	    
 	              </form>
 	            </tr>
-	            
 	        </table>
+	       
         </div>
 
         <!-- div id="wa_text_display_container" style="width: 5000px;" -->

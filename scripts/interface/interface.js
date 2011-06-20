@@ -220,6 +220,7 @@ WA.Interface = {
                     "<li style='margin: 0; padding: 0.1em;'><b>CTRL+F</b> - " + wa_gettext("search text in current page.") + "</li>" +
                     "<li style='margin: 0; padding: 0.1em;'><b>ALT+" + wa_gettext("Arrow Left") + "</b> - " + wa_gettext("Go back to previous page.") + wa_gettext("In Firefox browser,") + wa_gettext("we may need to go to Location with CTRL+L first.") + "</li>" +
                     "<li style='margin: 0; padding: 0.1em;'><b>ALT+" + wa_gettext("Arrow Right") + "</b> - " + wa_gettext("Go forward to next page.") + "</li>" +
+                    "<li style='margin: 0; padding: 0.1em;'><b>CTRL+" + wa_gettext("Shift") + "</b> - " +  wa_gettext("Change the Language!") +  "</li>" +
                     "</ul>" +
                     "</div>",
 

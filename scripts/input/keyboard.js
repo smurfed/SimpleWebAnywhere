@@ -126,9 +126,9 @@ WA.Keyboard = {
 	        setBrowseMode(WA.PLAY_ONE);        
       }
       break;
-    //case 'ctrl shift':
-    //  WA.Interface.addLanguageChanger();
-    //  break;
+    case 'ctrl shift':
+      WA.Interface.addLanguageChanger();
+      break;
     case 'ctrl forward slash':
       WA.Interface.addKeyboardHelp();
       break;
@@ -387,6 +387,7 @@ WA.Keyboard = {
     default:
       default_case = true;
       break;
+    
     }
   
     var select_chosen = false;
