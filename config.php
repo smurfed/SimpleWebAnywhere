@@ -79,7 +79,8 @@
   if($webanywhere_domain !== 'localhost') {
     $default_content_url = "http://" . $webanywhere_domain . $root_path . '/content.php';
   } else {
-    $default_content_url = "http://webanywhere.cs.washington.edu/beta/content.php";
+    //$default_content_url = "http://webanywhere.cs.washington.edu/beta/content.php";
+    $default_content_url = "http://www.google.com/news";
   }
   // To prevent malicious users from abusing the web proxy that is part of WebAnywhere,
   // the system can optionally limit the rate at which users can request content.
