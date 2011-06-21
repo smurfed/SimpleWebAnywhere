@@ -42,9 +42,9 @@
 
   // if $sound_url_base is not set. It will be automatically set to one of following voices according to the locale.
   // Girl voice:
-  //$voices["en"] = 'http://webanywhere.cs.washington.edu/cgi-bin/ivona/getsound.pl?text=$text$&cache=1&mtts=1'; // English
+  $voices["en"] = 'http://webanywhere.cs.washington.edu/cgi-bin/ivona/getsound.pl?text=$text$&cache=1&mtts=1'; // English
   // Robot Guy voice:
-  $voices["en"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=en&text=$text$'; // English
+  //$voices["en"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=en&text=$text$'; // English
   // If you have espeak installed locally:
   //$voices["en"] = 'http://localhost/wa/tts/espeak/getsound.pl?lang=en&text=$text$'; // English
   $voices["zh_CN"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=mandarin&text=$text$'; // Simplified Chinese

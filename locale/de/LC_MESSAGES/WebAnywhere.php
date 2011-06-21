@@ -1,5 +1,6 @@
 <?php $wa_text = array();
 $wa_text[""]="";
+$wa_text["Press CTRL + / for Shortcut keys"];
 $wa_text["Go"]="Grasen";
 $wa_text["Next"]="Nächst";
 $wa_text["Previous"]="Vor";
