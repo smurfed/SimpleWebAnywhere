@@ -221,6 +221,7 @@ WA.Interface = {
                     "<li style='margin: 0; padding: 0.1em;'><b>ALT+" + wa_gettext("Arrow Left") + "</b> - " + wa_gettext("Go back to previous page.") + wa_gettext("In Firefox browser,") + wa_gettext("we may need to go to Location with CTRL+L first.") + "</li>" +
                     "<li style='margin: 0; padding: 0.1em;'><b>ALT+" + wa_gettext("Arrow Right") + "</b> - " + wa_gettext("Go forward to next page.") + "</li>" +
                     "<li style='margin: 0; padding: 0.1em;'><b>CTRL+" + wa_gettext("Shift") + "</b> - " +  wa_gettext("Change the Language!") +  "</li>" +
+                    "<li style='margin: 0; padding: 0.1em;'><b>CTRL+" + wa_gettext("B") + "</b> - " +  wa_gettext("Popular Website List") +  "</li>" +
                     "</ul>" +
                     "</div>",
 
@@ -265,6 +266,26 @@ WA.Interface = {
   addLanguageChanger: function() {    
     this.addBlocker(wa_gettext("Select a language to switch to" + ": <br> " + this._languageChanger));
   },
+  
+  _mostVisitedSites:"<div id='mostVisitedSites'>" +
+  						"<h2>" + wa_gettext('Popular Websites') + "</h2>" +
+  						"<ul>" +
+  						"<li style='margin: 0; padding: 0.1em;'><b>" + "<a href='https://www.facebook.com'>" + wa_gettext("Facebook.com") + "</a>"+ "</li>" +
+  						"<li style='margin: 0; padding: 0.1em;'><b>" + "<a href='https://www.google.com'>" +wa_gettext("Google.com") + "</a>"+ "</li>" +
+  						"<li style='margin: 0; padding: 0.1em;'><b>" + "<a href='https://www.twitter.com'>" + wa_gettext("Twitter.com") + "</a>"+ "</li>" +
+  						"<li style='margin: 0; padding: 0.1em;'><b>" + "<a href='https://www.live.com'>" + wa_gettext("Live.com") + "</a>"+ "</li>" +
+  						"<li style='margin: 0; padding: 0.1em;'><b>" + "<a href='https://www.msn.com'>" + wa_gettext("MSN.com") + "</a>"+ "</li>" +
+  						"<li style='margin: 0; padding: 0.1em;'><b>" + "<a href='https://www.myspace.com'>" + wa_gettext("MySpace.com") + "</a>"+ "</li>" +
+  						"<li style='margin: 0; padding: 0.1em;'><b>" + "<a href='https://www.bloger.com'>" + wa_gettext("Blogger.com") + "</a>"+ "</li>" +
+  						"<li style='margin: 0; padding: 0.1em;'><b>" + "<a href='http://www.wikipedia.org/'>" + wa_gettext("Wikipedia.com") + "</a>"+ "</li>" +
+  						"<li style='margin: 0; padding: 0.1em;'><b>" + "<a href='http://www.yahoo.org/'>" + wa_gettext("Yahoo.com") + "</a>"+ "</li>" +
+  						"<li style='margin: 0; padding: 0.1em;'><b>" + "<a href='http://www.youtube.org/'>" + wa_gettext("YouTube.com") + "</a>"+ "</li>" +
+  						"</ul>" +
+  						"</div>", 
+  						
+ addPopularWebsites: function() {
+  		this.addBlocker(wa_gettext("List of Popular Websites" + this._mostVisitedSites));
+ },
 
   addBlocker: function(innerHTML) {
     WA.Sound.silenceAll();

@@ -177,13 +177,18 @@ echo $script_path;
 	                <td>	               
 	                    <img src="images/DataBrowserDc0.gif" input class="inputbutton" id="find_next_button" name="find_next_button" type="button" value="<?php echo wa_gettext('Next') ?>" onclick='nextNodeContentFinder(this); return false;'/>
 	                </td>
-	                	 <td>	               
-	                    <img src="images/GrabItDg6.gif" input class="inputbutton" id="Language_Button" name="Language_Button" type="button" value="<?php echo wa_gettext('Language') ?>" onclick='WA.Interface.addLanguageChanger()'/>
-	                </td>         
-	    
-	              </form>
+	                	 
+	    				<td>
+	    				<label for="Options" id="Options style="position: absolute; top: -100px"></label>
+	    				<select id="Options" id="Options">
+	    				<option>Options</option>
+	    			    <option value="PopularSites"<?php echo wa_gettext('Popular Sites') ?>" onclick='WA.Interface.addPopularWebsites();'>Popular Websites</option>
+	    				<option value="Language"<?php echo wa_gettext('Language') ?>" onclick='WA.Interface.addLanguageChanger()'>Change Language</option>
+	    				</select>	
+	    				</td>
 	            </tr>
 	        </table>
+	       
 	       
         </div>
 

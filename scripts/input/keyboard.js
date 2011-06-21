@@ -132,9 +132,12 @@ WA.Keyboard = {
     case 'ctrl forward slash':
       WA.Interface.addKeyboardHelp();
       break;
+    case 'ctrl b':
+    	WA.Interface.addPopularWebsites();
+    	break;
     case 'esc':
       WA.Interface.removeBlocker();
-      break;
+      break;    
     case 'shift tab':
       this.suppressKeys(e);
       switch(target_id) {
@@ -157,6 +160,7 @@ WA.Keyboard = {
 	        prevNodeFocus();
 	        setBrowseMode(WA.PLAY_ONE);
 	        break;
+            
       }
       break;
     case 'ctrl a':
