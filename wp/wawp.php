@@ -1357,19 +1357,15 @@ for ($i = 0, $count_i = count($matches); $i < $count_i; ++$i) {
 }
 */
 
+<<<<<<< HEAD
 
 
 
 
 
 
+=======
+>>>>>>> fafbea2f2aa325d373fda6ba6bd649dbec5180b4
 echo $_response_body;
 
-/*
-if($_content_type == 'text/css' href='index.css') {
-  $_response_body = proxify_css($_response_body);
-} else if($_content_type == 'application/x-javascript') {
-
-    $_response_body = str_replace('window.self != window.top', 'false', $_response_body);
-*/
 ?>
