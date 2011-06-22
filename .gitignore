@@ -11,5 +11,8 @@ thumbs.db
 .project
 .settings/
 
+# Ignore config files
+/config.php
+
 # Ignore eSpeak software for local TTS for WebAnywhere
 /espeak*
