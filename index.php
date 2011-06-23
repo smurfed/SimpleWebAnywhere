@@ -181,7 +181,13 @@ echo $script_path;
 	            </tr>
 	            
 	        </table>
+	        <div>
+    Softer
+        <input id="volumeSlider" type="range" min="0" max="100" value="75"  />
+        Louder
         </div>
+        </div>
+        
 
         <!-- div id="wa_text_display_container" style="width: 5000px;" -->
         <div id="wa_text_display_container">
@@ -211,6 +217,7 @@ echo $script_path;
 
        </div>
     </div>
+    
     <DIV ID="wa_iframe_div">
         <IFRAME id="content_frame" NAME="content_frame" WIDTH="100%" HEIGHT="100%" FRAMEBORDER="0" SRC="<?php echo $start_url; ?>" onload="newPage('onload' + this.contentWindow)">
             <p><a href="<?php echo $start_url; ?>">example</a></p>

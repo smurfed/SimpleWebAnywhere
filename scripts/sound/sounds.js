@@ -51,6 +51,8 @@ WA.Sound = {
   readyState: -1,
 
   startedSoundInit: false,
+  
+
 
   // Determines the soundMethod that should be used.
   // Currently this is detected from the URL, eventually this should be done
@@ -277,7 +279,8 @@ WA.Sound = {
     url = WA.Sound.urlForString(string);
 
     switch(this.soundMethod) {
-      case this.FLASH_SOUND_METHOD: this._prefetchFlash(string, url, playdone, bm); break;
+      //case this.FLASH_SOUND_METHOD: this._prefetchFlash(string, url, playdone, bm,"100"); break;
+      case this.FLASH_SOUND_METHOD: this._prefetchFlash(string, url, playdone, bm,document.getElementById("volumeSlider").value); break;
       case this.EMBED_SOUND_METHOD: Embed._prefetchEmbed(string, url, playdone, bm); break;
     }
   },
@@ -293,7 +296,7 @@ WA.Sound = {
     var url = urlForString(speak);
   
     switch(this.soundMethod) {
-      case this.FLASH_SOUND_METHOD: this._prefetchFlash("keycode_" + keycode, url, false, false); break;
+      case this.FLASH_SOUND_METHOD: this._prefetchFlash("keycode_" + keycode, url, false, false,document.getElementById("volumeSlider").value); break;
       case this.EMBED_SOUND_METHOD: Embed._prefetchEmbed("keycode_" + keycode, url, false, false); break;
     }
   },
@@ -320,7 +323,7 @@ WA.Sound = {
     for(var i=0; i<5 && i <N && this.free_threads > 0; i++) {
       var p = this.Prefetch.popQ();
       switch(this.soundMethod) {
-        case 1: this._prefetchFlash(p.text, p.url, p.playdone, p.bm); break;
+        case 1: this._prefetchFlash(p.text, p.url, p.playdone, p.bm,document.getElementById("volumeSlider").value); break;
         case 2: Embed._prefetchEmbed(p.text, p.url, p.playdone, p.bm); break;
         default: break;
       }
@@ -452,7 +455,7 @@ WA.Sound = {
   // "Prefetch" a sound into the Flash movie.
   // The name suggests that this method is only used for prefetching, but it is
   // also the primary mechanism for playing sounds as well.
-  _prefetchFlash: function(string, url, playdone, bm) {
+  _prefetchFlash: function(string, url, playdone, bm,vol) {
     if(!this.soundPlayerLoaded) {
       return;
     }
@@ -501,7 +504,7 @@ WA.Sound = {
             }
           },
   	      onfinish: function(){WA.Sound._onSoundFinish(this);},
-          volume: 75
+          volume: vol //this is in flash was 75 the stikin sound control
         });
       }
     } else if(sound.readyState == 3) {
@@ -553,7 +556,7 @@ WA.Sound = {
         }
       },
       onfinish: function() {WA.Sound._onsoundfinish(this)},
-      volume: 75
+      volume: 75 //this is for sound while loading was 75
     });
   },
 
@@ -599,6 +602,7 @@ WA.Sound = {
     this.soundMethod = this.setSoundMethod();
 
     if(this.soundMethod == this.FLASH_SOUND_METHOD) {
+    	//alert("using flash");
       soundManager.defaultOptions = {
       'autoLoad': false,             // enable automatic loading (otherwise .load() will be called on demand with .play()..)
       'stream': true,                // allows playing before entire file has loaded (recommended)
@@ -617,7 +621,7 @@ WA.Sound = {
       'onjustbeforefinishtime':200,  // [n] - if not using, set to 0 (or null handler) and event will not fire.
       'multiShot': true,             // let sounds "restart" or layer on top of each other when played multiple times..
       'pan': 0,                      // "pan" settings, left-to-right, -100 to 100
-      'volume': 100                  // self-explanatory. 0-100, the latter being the max.
+      'volume': 100                  // self-explanatory. 0-100, the latter being the max. was 100
       }
     
       // Called when there is an error with the Flash sound player.

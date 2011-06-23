@@ -51,7 +51,7 @@ function SoundManager(smURL,smID) {
     'multiShotEvents': false,      // fire multiple sound events (currently onfinish() only) when multiShot is enabled
     'position': null,              // offset (milliseconds) to seek to within loaded sound data.
     'pan': 0,                      // "pan" settings, left-to-right, -100 to 100
-    'volume': 100                  // self-explanatory. 0-100, the latter being the max.
+    'volume': 100                 // self-explanatory. 0-100, the latter being the max. was 100
   };
 
   this.flash9Options = {           // flash 9-only options, merged into defaultOptions if flash 9 is being used
@@ -1532,7 +1532,7 @@ function SoundManager(smURL,smID) {
 
   this.setVolume = function(nVol,bInstanceOnly) {
     if (typeof nVol == 'undefined') {
-      nVol = 100;
+      nVol = 100;//was 100
     }
     if (typeof bInstanceOnly == 'undefined') {
       bInstanceOnly = false;

@@ -140,8 +140,10 @@ echo $script_path;
 </td>
 </tr>
 </table>
+
 </form>
 </div>
+
 
 <div id="wa_text_display" style="margin: 0; padding: 0.1em; font-size: 3em; color: #FF0; font-weight: bold;">Welcome to WebAnywhere</div>
 

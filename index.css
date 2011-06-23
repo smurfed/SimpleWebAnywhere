@@ -118,7 +118,7 @@ input {
 }
 
 #content_frame {
-	position: absolute;
+	
 	top: 55px;
 	margin: 0;
 	padding: 0;
@@ -131,7 +131,7 @@ input {
 }
 
 #wa_iframe_div {
-	position: absolute;
+	
 	top: 55px;
 	height: 100%;
 	width: 100%;
