@@ -67,6 +67,7 @@ Pressing SHIFT in combination with them reverses the direction of the search, se
 <li><b>CTRL+F</b> - search text in current page.</li>
 <li><b>ALT+Arrow Left</b> - Go back to previous page.</li>
 <li><b>ALT+Arrow Right</b> - Go forward to next page.</li>
+<li><b>CTRL+SHIFT</b> - change the language</li>
 </ul>
 </div>
 

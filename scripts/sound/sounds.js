@@ -280,7 +280,7 @@ WA.Sound = {
 
     switch(this.soundMethod) {
       //case this.FLASH_SOUND_METHOD: this._prefetchFlash(string, url, playdone, bm,"100"); break;
-      case this.FLASH_SOUND_METHOD: this._prefetchFlash(string, url, playdone, bm,document.getElementById("volumeSlider").value); break;
+      case this.FLASH_SOUND_METHOD: this._prefetchFlash(string, url, playdone, bm); break;
       case this.EMBED_SOUND_METHOD: Embed._prefetchEmbed(string, url, playdone, bm); break;
     }
   },
@@ -296,7 +296,7 @@ WA.Sound = {
     var url = urlForString(speak);
   
     switch(this.soundMethod) {
-      case this.FLASH_SOUND_METHOD: this._prefetchFlash("keycode_" + keycode, url, false, false,document.getElementById("volumeSlider").value); break;
+      case this.FLASH_SOUND_METHOD: this._prefetchFlash("keycode_" + keycode, url, false, false); break;
       case this.EMBED_SOUND_METHOD: Embed._prefetchEmbed("keycode_" + keycode, url, false, false); break;
     }
   },
@@ -323,7 +323,7 @@ WA.Sound = {
     for(var i=0; i<5 && i <N && this.free_threads > 0; i++) {
       var p = this.Prefetch.popQ();
       switch(this.soundMethod) {
-        case 1: this._prefetchFlash(p.text, p.url, p.playdone, p.bm,document.getElementById("volumeSlider").value); break;
+        case 1: this._prefetchFlash(p.text, p.url, p.playdone, p.bm); break;
         case 2: Embed._prefetchEmbed(p.text, p.url, p.playdone, p.bm); break;
         default: break;
       }
@@ -455,7 +455,7 @@ WA.Sound = {
   // "Prefetch" a sound into the Flash movie.
   // The name suggests that this method is only used for prefetching, but it is
   // also the primary mechanism for playing sounds as well.
-  _prefetchFlash: function(string, url, playdone, bm,vol) {
+  _prefetchFlash: function(string, url, playdone, bm) {
     if(!this.soundPlayerLoaded) {
       return;
     }
@@ -504,7 +504,7 @@ WA.Sound = {
             }
           },
   	      onfinish: function(){WA.Sound._onSoundFinish(this);},
-          volume: vol //this is in flash was 75 the stikin sound control
+          volume: document.getElementById("volumeSlider").value //this is in flash was 75 the stikin sound control
         });
       }
     } else if(sound.readyState == 3) {

@@ -44,10 +44,10 @@ $start_url = str_replace('$url', $start_url, $wp_path);
 <link rel="stylesheet" type="text/css" href="index.css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+<script type="text/javascript" src="<?php echo $script_path; ?>/js-config.php"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script type="text/javascript" src="indexSetup.js"></script>
 
-    <script type="text/javascript" src="<?php
-echo $script_path;
-?>/js-config.php"></script>
 <?php // Start of the WebAnywhere code. ?>
 
 
@@ -144,7 +144,7 @@ echo $script_path;
       <div ID="wa_navigator_inner">
 
       <div id="wa_browser_interface">
-	        <table id="table1">
+	        <table id="table1">	            
 	            <tr id="tr1">
 	              <form onSubmit="javascript:navigate(this);return false;" id="Form1" autocomplete="off">
 	                <td id="td1">
@@ -161,8 +161,9 @@ echo $script_path;
 							<option value="blackberry"><?php echo wa_gettext('BlackBerry') ?></option>
 						</select>
 					</td>
+					
 	                <td>
-	                     <img src="images/GrabItDi3.gif" input class="inputbutton" name="go" type="submit" value="<?php echo wa_gettext('Go') ?> "id="location_go" onclick='navigate(this); return false;'/>
+	                     <img src="images/GrabItDi3.gif" class="inputbutton" name="go" value="<?php echo wa_gettext('Go') ?> "id="location_go" />
 	                </td>
 	              </form>
 	              <form onSubmit="javascript:nextNodeContentFinder(this);return false;" id="Form2" autocomplete="off">
@@ -170,24 +171,29 @@ echo $script_path;
 	                    <input class="inputbox" type="text" name="finder_field" id="wa_finder_field"/>
 	                </td>
 	                <td>
-	                    <img src="images/DataBrowserDb0.gif" input class="inputbutton" id="find_previous_button" name="find_previous_button" type="button" value="<?php echo wa_gettext('Previous') ?>" onclick='prevNodeContentFinder(this); return false;'/>
+	                    <img src="images/DataBrowserDb0.gif"  class="inputbutton" id="find_previous_button" name="find_previous_button" value="<?php echo wa_gettext('Previous') ?>"/>
 	                    
 	                </td>
+	                <td>	               
+	                    <img src="images/DataBrowserDc0.gif"  class="inputbutton" id="find_next_button" value="<?php echo wa_gettext('Next') ?>"/>
+	                </td>
+	                	 
+	    				<td>
+	                     <img src="images/GrabItDi3.gif" class="inputbutton" id="PopularWebsites" value="<?php echo wa_gettext('W') ?>"/>
+	                </td>
 	                <td>
-	                    <img src="images/DataBrowserDc0.gif" input class="inputbutton" id="find_next_button" name="find_next_button" type="button" value="<?php echo wa_gettext('Next') ?>" onclick='nextNodeContentFinder(this); return false;'/>
+	                     <img src="images/GrabItDi3.gif" class="inputbutton" id="Language" value="<?php echo wa_gettext('L') ?>"/>
 	                </td>
 	                
-	              </form>
 	            </tr>
-	            
 	        </table>
+
 	        <div>
     Softer
         <input id="volumeSlider" type="range" min="0" max="100" value="75"  />
         Louder
         </div>
         </div>
-        
 
         <!-- div id="wa_text_display_container" style="width: 5000px;" -->
         <div id="wa_text_display_container">
@@ -229,12 +235,11 @@ echo $script_path;
       <script src="scripts/extensions/flash/swfobject.js" type="text/javascript"></script>
    
     <?php } ?>
-    
-<script type="text/javascript" src="indexSetup.js">
-indexSetup();
+
+
+<script type="text/javascript">
+	indexSetup();
 </script>
-
-
 
 
 </body>

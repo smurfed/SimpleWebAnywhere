@@ -30,7 +30,6 @@
   // The path to the web proxy.
   // $url$ will be replaced with the URL Escaped URL to fetch.
   $wp_path = $root_path . '/wp/wawp.php?proxy_url=$url$&$dp$';
-  //$wp_path = $root_path . '/wp/wawp.php?proxy_url=$url$&$dev$&$dp$';
 
   // Path to the sounds folder.
   $sounds_path = $root_path . '/sounds/';
@@ -41,12 +40,14 @@
   // but you can use the WebAnywhere server for this purpose.
 
   // if $sound_url_base is not set. It will be automatically set to one of following voices according to the locale.
-  // Smooth Girl voice:
+  
+  // Natural feminine voice:
   //$voices["en"] = 'http://webanywhere.cs.washington.edu/cgi-bin/ivona/getsound.pl?text=$text$&cache=1&mtts=1'; // English
-  // Robot Guy voice:
-  $voices["en"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=en&text=$text$'; // English
   // If you have espeak installed locally:
-  //$voices["en"] = 'http://localhost/wa/tts/espeak/getsound.pl?lang=en&text=$text$'; // English
+  //$voices["en"] = 'http://localhost/SimpleWebAnywhere/tts/espeak/getsound.pl?lang=en&text=$text$'; // English
+
+  // Standard eSpeak voice:
+  $voices["en"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=en&text=$text$'; // English
   $voices["zh_CN"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=mandarin&text=$text$'; // Simplified Chinese
   $voices["zh_TW"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=mandarin&text=$text$'; // Traditional Chinese
   $voices["de"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=de&text=$text$'; // German
@@ -56,11 +57,11 @@
   $voices["bs"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=bs&text=$text$'; // Bosnian
   $voices["ca"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=ca&text=$text$'; // Catalan
   $voices["cs"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=cs&text=$text$'; // Czech
-  $voices["el"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=fr&text=$text$'; // Greek
+  $voices["el"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=el&text=$text$'; // Greek
   $voices["eo"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=eo&text=$text$'; // Esperanto
-  $voices["es"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=fr&text=$text$'; // Spanish
+  $voices["es"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=es&text=$text$'; // Spanish
   $voices["fi"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=fi&text=$text$'; // Finnish
-  $voices["hr"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=fr&text=$text$'; // Croatian
+  $voices["hr"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=hr&text=$text$'; // Croatian
   $voices["hu"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=hu&text=$text$'; // Hungarian
   $voices["it"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=it&text=$text$'; // Italian
   $voices["ku"] = 'http://webanywhere.cs.washington.edu/cgi-bin/espeak/getsound.pl?lang=ku&text=$text$'; // Kurdish
@@ -79,8 +80,7 @@
   if($webanywhere_domain !== 'localhost') {
     $default_content_url = "http://" . $webanywhere_domain . $root_path . '/content.php';
   } else {
-    //$default_content_url = "http://webanywhere.cs.washington.edu/beta/content.php";
-    $default_content_url = "http://www.google.com/news";
+    $default_content_url = "http://webanywhere.cs.washington.edu/beta/content.php";
   }
   // To prevent malicious users from abusing the web proxy that is part of WebAnywhere,
   // the system can optionally limit the rate at which users can request content.

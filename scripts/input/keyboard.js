@@ -126,15 +126,18 @@ WA.Keyboard = {
 	        setBrowseMode(WA.PLAY_ONE);        
       }
       break;
-    //case 'ctrl shift':
-    //  WA.Interface.addLanguageChanger();
-    //  break;
+    case 'ctrl shift':
+      WA.Interface.addLanguageChanger();
+      break;
     case 'ctrl forward slash':
       WA.Interface.addKeyboardHelp();
       break;
+    case 'ctrl b':
+    	WA.Interface.addPopularWebsites();
+    	break;
     case 'esc':
       WA.Interface.removeBlocker();
-      break;
+      break;    
     case 'shift tab':
       this.suppressKeys(e);
       switch(target_id) {
@@ -157,6 +160,7 @@ WA.Keyboard = {
 	        prevNodeFocus();
 	        setBrowseMode(WA.PLAY_ONE);
 	        break;
+            
       }
       break;
     case 'ctrl a':
@@ -387,6 +391,7 @@ WA.Keyboard = {
     default:
       default_case = true;
       break;
+    
     }
   
     var select_chosen = false;

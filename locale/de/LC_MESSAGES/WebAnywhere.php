@@ -1,5 +1,6 @@
 <?php $wa_text = array();
 $wa_text[""]="";
+$wa_text["Press CTRL + / for Shortcut keys"];
 $wa_text["Go"]="Grasen";
 $wa_text["Next"]="Nächst";
 $wa_text["Previous"]="Vor";
@@ -44,6 +45,8 @@ $wa_text["rows"]="Reihen";
 $wa_text["columns"]="Spalten";
 $wa_text["List with"]="Liste mit";
 $wa_text["items"]="Elemente";
+$wa_text["Language"];
+$wa_text["Popular Sites"];
 
 function wa_gettext($text) {
     global $wa_text;
