@@ -14,7 +14,7 @@ WA.Sound.Embed = {
 
   // Redirect to the embedded player version of the page.
   doEmbedSounds: function() {
-    getNavigationDocument().location = "browser.php?embed=true";	
+    getNavigationDocument().location = "index.php?embed=true";	
   },
 
   // Play a sound using the embedded player.
